@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "binary_tree/binary_tree_simple.hpp"
 
-using namespace clicker;
 
 TEST(BinaryTreeTest, ConstructorInitializesValue) {
     BinaryTree* node = new BinaryTree(42);
