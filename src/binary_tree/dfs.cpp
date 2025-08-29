@@ -38,7 +38,34 @@ void preOrder(BinaryTreeNode *tree) {
         if (tempTree->right) q.push(tempTree->right); // if we want preorder we need to first push the right subtree!
 
         if (tempTree->left) q.push(tempTree->left);
-
-        std::cout << "\n";
     }
+}
+
+void preOrderRecursive(BinaryTreeNode* node,std::vector<BinaryTreeNode*>& order){
+    if (node== nullptr){
+        return;
+    }
+    order.push_back(node);
+    preOrderRecursive(node->left,order);
+    preOrderRecursive(node->right,order);
+}
+
+void inOrderRecursive(BinaryTreeNode* node,std::vector<BinaryTreeNode*>& order){
+    if (node== nullptr){
+        return;
+    }
+    inOrderRecursive(node->left,order);
+    order.push_back(node); //you may also use node->m_value to get value immediately.
+    inOrderRecursive(node->right,order);
+}
+
+
+void postOrderRecursive(BinaryTreeNode* node,std::vector<BinaryTreeNode*>& order){
+    if (node== nullptr){
+        return;
+    }
+
+    postOrderRecursive(node->left,order);
+    postOrderRecursive(node->right,order);
+    order.push_back(node);
 }
