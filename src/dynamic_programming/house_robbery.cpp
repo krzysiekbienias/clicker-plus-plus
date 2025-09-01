@@ -9,7 +9,8 @@ int houseRobbery(const std::vector<int> &array){
     if (n==1) return array[0];
     if (n==2) return std::max(array[0],array[1]);
     
-    //If you’re building a dp table, even for small input, you must assign the initial base values before using them in recurrence.
+    //If you’re building a dp table, even for small input,
+    //you must assign the initial base values before using them in recurrence.
     std::vector<int>dp(n,0);
     dp[0]=array[0];
     dp[1]=std::max(array[0],array[1]);

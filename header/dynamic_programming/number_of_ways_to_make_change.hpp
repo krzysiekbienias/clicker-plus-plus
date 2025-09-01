@@ -2,4 +2,4 @@
 #include<vector>
 // Declare your minimum_coin_combination interface here.
 
-int minimumCoinCombination
+int numberOfWaysToMakeChange(int n, std::vector<int> denoms);
