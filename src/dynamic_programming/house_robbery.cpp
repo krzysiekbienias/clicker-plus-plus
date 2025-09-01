@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include "dynamic_programming/house_robbery.hpp"
 // Implement your house_robbery logic here.
 
 int houseRobbery(const std::vector<int> &array){
