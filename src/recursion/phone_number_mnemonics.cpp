@@ -18,7 +18,7 @@ void backtrack(int index, const std::string & digits, const std::vector<std::str
 }
 
 // Declare your phone_number_mnemonics interface here.
-std::vector<std::string> phoneNumberMnemonics(std::string phoneNumber){
+std::vector<std::string> phoneNumberMnemonics(const std::string &phoneNumber){
     //edge case
     std::vector<std::string> mapping={
         "0",
