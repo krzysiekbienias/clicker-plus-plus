@@ -42,3 +42,24 @@ const std::vector<std::string>& Graph::getNeighbors(const std::string& v)const {
 size_t Graph::vertexCount() const {
     return m_adjList.size();
 }
+
+std::vector<std::string> Graph::dfs(const std::string & start) const {
+    std::vector<std::string> order;
+    auto it=m_adjList.find(start);
+    if (it==m_adjList.end()) return order;
+
+    std::unordered_set<std::string> visited;
+    std::vector<std::string> stack{start};
+
+    while (!stack.empty()) {
+        std::string u=stack.back();
+        stack.pop_back();
+        if (!visited.insert(u).second) continue;
+        order.push_back(u);
+        const auto neighbors=getNeighbors(u);
+        for (auto it =neighbors.rbegin();it!=neighbors.rend();++it) {
+            if (!visited.count(*it)) stack.push_back(*it);
+        }
+    }
+return order;
+}
