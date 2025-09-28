@@ -21,5 +21,7 @@ public:
     std::vector<std::string> bfs(const std::string& start) const;
     std::vector<std::string> dfs(const std::string& start) const;
 
+    bool hasCycle(std::vector<std::string>& cycleOut) const;
+
 
 };

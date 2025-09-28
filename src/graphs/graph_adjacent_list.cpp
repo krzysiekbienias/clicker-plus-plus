@@ -9,6 +9,7 @@
 //constructor
 Graph::Graph(bool directed):m_directed(directed) {}
 
+
 bool Graph::addVertex(const std::string &v) {
     // try emplace returns the pair<iterator, bool> so the second is a bool everything fine
     return m_adjList.try_emplace(v,std::vector<std::string>{}).second;
@@ -62,4 +63,87 @@ std::vector<std::string> Graph::dfs(const std::string & start) const {
         }
     }
 return order;
+}
+
+std ::vector<std::string>Graph::bfs(const std::string& start)const{
+    std::vector<std::string> order;
+    auto it=m_adjList.find(start);
+    if(it==m_adjList.end()) return order;
+
+    std::unordered_set<std::string>visited;
+    std::queue<std::string> q;
+
+    visited.insert(start);
+    q.push(start);
+
+    while (!q.empty()){
+        auto u=q.front();
+        q.pop();
+        order.push_back(u);
+        for(const auto& w: getNeighbors(u)){
+            if(visited.insert(w).second) q.push(w);
+        }
+    }
+    return order;
+}
+
+enum{UNVISITED=0,VISITING=1,VISITED=2};
+
+bool Graph::hasCycle(std::vector<std::string>& cycleOut) const{
+    std::unordered_map<std::string,int> state;
+    std::unordered_map<std::string,std::string> parent; //parent[child]=parentNode
+    state.reserve(m_adjList.size()*2);
+    //1) Initiate states for all vertexes that are keys
+    for  (const auto & [u,_]:m_adjList){
+        auto keyVertex=u;//DEBUG structured binding
+        state[u]=UNVISITED;
+    }
+
+
+    //2) Make sure that also vertexes that are in neighbours are in state map
+    for (const auto & [u,_]:m_adjList){
+        auto originVertex =u;//DEBUG
+        const auto neighbors= getNeighbors(u);
+        for (const auto &v:neighbors){
+            auto targetVertex =v;//DEBUG structured binding
+            if(!state.count(v)) state[v]=UNVISITED;
+        }
+    }
+    std::function<bool(const std::string&)> dfsCycle=[&](const std::string& u)->bool{
+        state[u]=VISITING;
+        //get from outer function neighbours
+        const auto neighbors= getNeighbors(u);
+        for (const auto& v:neighbors){
+
+            if(state[v]==UNVISITED){
+                parent[v]=u;//remember how we get to v
+                if(dfsCycle(v)) return true;
+
+            }
+            else if (state[v]==VISITING){
+
+                //back-edge for active path->we have cycle
+                std::vector<std::string> back;
+                auto x=u;
+                back.push_back(u);
+                while (x!=v){
+                    x=parent[x];
+                    back.push_back(x);
+                }
+                std::reverse(back.begin(),back.end());
+                back.push_back(v);
+                cycleOut=std::move(back);
+                return true;
+            }
+
+        }
+        state[u]=VISITED;
+        return false;
+    };
+    for (const auto&[u,st]:state){
+        if(st == UNVISITED){
+            if (dfsCycle(u)) return true;
+        }
+    }
+    return false;
 }
