@@ -19,3 +19,17 @@ int longestIncreasingSubsequence(const std::vector<int> &arr ){
     }
     return *std::max_element(dp.begin(),dp.end());
 }
+
+
+int lisWithBinarySearch(const std::vector<int> &arr ){
+    std::vector<int> tails;
+    tails.reserve(arr.size());
+    for (int x : arr){
+        auto it = std::lower_bound(tails.begin(),tails.end(),x);
+        if (it==tails.end()) tails.push_back(x);
+        *it=x;
+
+    }
+    return (int)tails.size();
+
+}
