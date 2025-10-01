@@ -39,7 +39,7 @@ std::vector<int> getMaxDistancesAtBlocks(const std::vector<std::unordered_map<st
     }
     return maxDistancesAtBlocks;
 }
-//generic application
+
 int getIdxAtMinValue(std::vector<int> arr) {
     int indexAtMinValue=0;
     int minValue=INT_MAX;
