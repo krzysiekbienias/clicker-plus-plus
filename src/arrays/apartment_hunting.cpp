@@ -12,15 +12,22 @@ for (const std::string& req:requirements) {
 }
 
 std::vector<int> getMinDistances(const std::vector<std::unordered_map<std::string,bool>>& blocks,const std::string& req) {
-    std::vector<int> minDistancesPerRequired(blocks.size());
-    int closestIndexForReq=INT_MAX;
+
+    int const INF =10e6;
+    std::vector<int> minDistancesPerRequired(blocks.size(),INF);
+    int closestIndexForReq=INF;
+
     for (int i=0;i<blocks.size();++i) {
-         if (blocks[i].at(req)) closestIndexForReq=i;
-        minDistancesPerRequired[i]=distance(i,closestIndexForReq);
+         auto it =blocks[i].find(req);
+         if(it!=blocks[i].end() && it->second) closestIndexForReq =i;
+         if(closestIndexForReq!=INF) minDistancesPerRequired[i]=i-closestIndexForReq;
     }
-    for (int i=blocks.size()-1;i>=0;i--) {
-        if (blocks[i].at(req)) closestIndexForReq=i;
-        minDistancesPerRequired[i]=std::min(minDistancesPerRequired[i],distance(i,closestIndexForReq));
+
+    closestIndexForReq=INF;//reset required
+    for (int i=blocks.size()-1;i>=0;--i) {
+        auto it =blocks[i].find(req);
+        if(it!=blocks[i].end() && it->second) closestIndexForReq=i;
+        if (closestIndexForReq!=INF) minDistancesPerRequired[i]=std::min(minDistancesPerRequired[i],closestIndexForReq-i);
     }
     return minDistancesPerRequired;
 }
