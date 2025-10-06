@@ -1,3 +1,5 @@
 #pragma once
+#include<vector>
 
-// Declare your spiral_traversal interface here.
+
+std::vector<int> spiralTraverse(std::vector<std::vector<int>> array);
