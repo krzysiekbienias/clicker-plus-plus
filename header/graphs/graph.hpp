@@ -5,13 +5,13 @@
 #include <iostream>
 // Declare your graph interface here.
 
-class Graph{
+class AbstractGraph{
 private:
     std::unordered_map<int, GraphNode*> m_nodes;
     void dfsHelper(GraphNode* node, std::unordered_set<int>& visited) const;
     
 public:
-    ~Graph();
+    ~AbstractGraph();
     GraphNode* addNode(int);
     void addEdge(int fromId,int toId,bool directed=false);
     void display(bool directed = false) const;

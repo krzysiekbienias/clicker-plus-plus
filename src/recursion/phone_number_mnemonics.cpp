@@ -4,7 +4,7 @@
 
 
 void backtrack(int index, const std::string & digits, const std::vector<std::string>& mapping,
-               std::string& current, std::vector<std::string> result){
+               std::string& current, std::vector<std::string>& result){
     if(index==digits.size()){
         result.push_back(current);
         return;
@@ -18,7 +18,7 @@ void backtrack(int index, const std::string & digits, const std::vector<std::str
 }
 
 // Declare your phone_number_mnemonics interface here.
-std::vector<std::string> phoneNumberMnemonics(const std::string &phoneNumber){
+std::vector<std::string> phoneNumberMnemonics(const std::string phoneNumber){
     //edge case
     std::vector<std::string> mapping={
         "0",

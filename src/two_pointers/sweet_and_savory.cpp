@@ -26,5 +26,4 @@ std::vector<int> sweetAndSavory(std::vector<int> dishes, int target) {
 
     if (bestGap == INT_MAX) return {0, 0};
     return {dishes[bestLeft], dishes[bestRight]};
-
 }

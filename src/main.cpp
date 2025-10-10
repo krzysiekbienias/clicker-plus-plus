@@ -49,26 +49,46 @@
 #include "searching/local_maxima_array.hpp"
 #include "strings/first_non_repeating_character.hpp"
 #include "linked_list/find_loop.hpp"
+#include "binary_tree/bfs.hpp"
+#include "binary_tree/dfs.hpp"
+#include "dynamic_programming/min_number_of_coins_for_change.hpp"
+#include "dynamic_programming/number_of_ways_to_make_change.hpp"
+#include "recursion/phone_number_mnemonics.hpp"
+#include "recursion/sum_of_digits.hpp"
+#include "arrays/apartment_hunting.hpp"
+#include "arrays/longest_subarray_with_sum.hpp"
+#include "stack/baseball_game.hpp"
+#include "stack/clear_digits.hpp"
+#include "two_pointers/sweet_and_savory.hpp"
+#include "graphs/graph_adjacent_list.hpp"
+#include "graphs/largest_island.hpp"
+#include "graphs/remove_island.hpp"
+#include "matrix/is_on_edge.hpp"
+#include "sorting/selection_sort.hpp"
+#include "arrays/calendar_matching.hpp"
+#include "matrix/repeated_matrix_value.hpp"
+#include "arrays/remove_one_element_to_make_the_array_strictly_increasing.hpp"
+#include "arrays/restore_finishing_order.hpp"
+#include "strings/jewel_game.hpp"
+#include "std_aliases.hpp"
 
 int main() {
+    using namespace stl;
+    using namespace io;
 
-    std::cout << "Welcome to Clicker++! 🧟‍♂️\n";
-    BinaryTreeNode* root = new BinaryTreeNode(1);
-    root->left  = new BinaryTreeNode(2);
-    root->right = new BinaryTreeNode(3);
-    root->left->left   = new BinaryTreeNode(4);
-    root->left->right  = new BinaryTreeNode(5);
-    root->right->left  = new BinaryTreeNode(6);
-    root->right->right = new BinaryTreeNode(7);
-    root->left->left->left   = new BinaryTreeNode(8);
-    root->left->left->right  = new BinaryTreeNode(9);
-    root->left->right->left = new BinaryTreeNode(10);
+    cout << "Welcome to Clicker++! 🧟‍♂️\n";
+    char s[]="abccbda";
+    cout<<getMaxScore(s);
 
-    std::cout << root->left->left->right->m_value;
 
-    branchSums(root);
 
-   delete root;
+    
+
+
+
+
+
+
 
     return 0;
 }

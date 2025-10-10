@@ -4,12 +4,12 @@
 // Implement your graph logic here.
 
 
-Graph::~Graph(){
+AbstractGraph::~AbstractGraph(){
     for (auto  & [ _ ,  node ] : m_nodes)
         delete node;
 }
 
-GraphNode* Graph::addNode(int id){
+GraphNode* AbstractGraph::addNode(int id){
     if (!m_nodes.count(id)) {
         m_nodes[id]=new GraphNode(id);
     }
@@ -17,7 +17,7 @@ GraphNode* Graph::addNode(int id){
 }
 
 
-void Graph::addEdge(int fromId, int toId, bool directed) {
+void AbstractGraph::addEdge(int fromId, int toId, bool directed) {
     GraphNode* from = addNode(fromId);
     GraphNode* to = addNode(toId);
     from->addNeighbor(to);
@@ -27,7 +27,7 @@ void Graph::addEdge(int fromId, int toId, bool directed) {
     }
 }
 
-void Graph::display(bool directed) const {
+void AbstractGraph::display(bool directed) const {
     std::unordered_set<std::string> printedEdges;
 
     for (const auto& [id, node] : m_nodes) {
@@ -57,7 +57,7 @@ void Graph::display(bool directed) const {
     }
 }
 
-void Graph::displayAdjacencyList(bool directed) const {
+void AbstractGraph::displayAdjacencyList(bool directed) const {
     std::cout << "+======================================+\n";
     std::cout << "| Adjacency List" << (directed ? " (Directed)" : " (Undirected)") << "         |\n";
     std::cout << "+======================================+\n";
@@ -78,7 +78,7 @@ void Graph::displayAdjacencyList(bool directed) const {
     }
 }
 
-void Graph::dfs(int startId) const{
+void AbstractGraph::dfs(int startId) const{
     if (!m_nodes.count(startId)) {
         std::cout<<"Start node not found.\n";
         return;
@@ -87,7 +87,7 @@ void Graph::dfs(int startId) const{
     dfsHelper(m_nodes.at(startId), visited);
 }
 
-void Graph::dfsHelper(GraphNode *node, std::unordered_set<int> &visited)const{
+void AbstractGraph::dfsHelper(GraphNode *node, std::unordered_set<int> &visited)const{
     if (!node||visited.count(node->getId())) {
         return ;
     }

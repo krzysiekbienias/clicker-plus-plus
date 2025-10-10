@@ -20,6 +20,7 @@
 #include <numeric>
 #include <limits>
 #include <chrono>
+#include <iomanip>
 
 
 namespace stl {
@@ -35,9 +36,23 @@ namespace stl {
     using std::priority_queue;
     using std::stack;
 
+
     // Krótsze aliasy szablonowe (opcjonalnie)
     template<class T> using Vec = std::vector<T>;
     template<class K, class V> using HashMap = std::unordered_map<K, V>;
+
+    //operacje na kontenerach
+    using std::sort;
+}
+
+namespace io {
+    using std::iostream;
+    using std::ostringstream;
+    using std::setw;
+    using std::setfill;
+    using std::cout;
+    using std::cin;
+    using std::endl;
 }
 
 // --- aliasy pomocnicze ---
