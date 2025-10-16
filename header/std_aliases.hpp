@@ -21,6 +21,7 @@
 #include <limits>
 #include <chrono>
 #include <iomanip>
+#include <random>   // generatory i rozkłady
 
 
 namespace stl {
@@ -53,6 +54,23 @@ namespace io {
     using std::cout;
     using std::cin;
     using std::endl;
+}
+
+namespace rnd {
+    // Silniki (tylko aliasy typów)
+    using RNG64      = std::mt19937_64;
+    using RNG32      = std::mt19937;
+    using RandomDev  = std::random_device;
+    using SeedSeq    = std::seed_seq;
+
+    // Rozkłady (aliasy szablonowe)
+    template<class Int>   using UniformInt  = std::uniform_int_distribution<Int>;
+    template<class Real>  using UniformReal = std::uniform_real_distribution<Real>;
+    using Bernoulli                     = std::bernoulli_distribution;
+    template<class Real>  using Normal  = std::normal_distribution<Real>;
+    template<class Real>  using Exponential = std::exponential_distribution<Real>;
+    template<class Real>  using Gamma   = std::gamma_distribution<Real>;
+    template<class Real>  using LogNormal = std::lognormal_distribution<Real>;
 }
 
 // --- aliasy pomocnicze ---
