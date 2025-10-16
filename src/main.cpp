@@ -71,24 +71,19 @@
 #include "arrays/restore_finishing_order.hpp"
 #include "strings/jewel_game.hpp"
 #include "std_aliases.hpp"
+#include "famous_algorithms/fisher_yates.hpp"
+#include "linked_list/coding_platform_setup.hpp"
+#include "strings/minimum_characters_for_words.hpp"
 
 int main() {
     using namespace stl;
     using namespace io;
 
     cout << "Welcome to Clicker++! 🧟‍♂️\n";
-    char s[]="abccbda";
-    cout<<getMaxScore(s);
+    vector<string> input = {"this", "that", "did", "deed", "them!", "a"};
 
-
-
-    
-
-
-
-
-
-
+    auto res=minimumCharactersForWords(input);
+    print_utils::printVector(res);
 
     return 0;
 }

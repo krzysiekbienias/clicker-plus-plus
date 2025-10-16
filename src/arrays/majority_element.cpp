@@ -19,7 +19,7 @@ int majorityElement(std::vector<int>& nums){
 
 //unique majority element granted
 int majorityElementBoyerMoore(const std::vector<int>& nums) {
-    int candidate=-1;
+    int candidate=0;
     int count=0;
     for (int num:nums) {
         if (count==0) {
