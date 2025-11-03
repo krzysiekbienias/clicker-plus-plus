@@ -1,3 +1,4 @@
 #pragma once
+#include<string>
 
-// Declare your palindrome_check interface here.
+bool isPalindrome(std::string str);
