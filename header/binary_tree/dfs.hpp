@@ -2,12 +2,12 @@
 #include "binary_tree/binary_tree_node.hpp"
 #include <vector>
 
-void reversePreOrder(BinaryTreeNode* tree);
-void preOrder(BinaryTreeNode* tree);
-void inOrder(BinaryTreeNode* tree);
-void inOrderRecursive(BinaryTreeNode* tree,std::vector<BinaryTreeNode*>& order);
-void preOrderRecursive(BinaryTreeNode* tree,std::vector<BinaryTreeNode*>& order);
-void postOrderRecursive(BinaryTreeNode* tree,std::vector<BinaryTreeNode*>& order);
+void reversePreOrder(TreeNode* tree);
+std::vector<int> preOrder(TreeNode *tree);
+std::vector<int> inOrder(TreeNode *tree);
+void inOrderRecursive(TreeNode* tree,std::vector<TreeNode*>& order);
+void preOrderRecursive(TreeNode* tree,std::vector<TreeNode*>& order);
+void postOrderRecursive(TreeNode* tree,std::vector<TreeNode*>& order);
 
 
-void postOrder(BinaryTreeNode* tree);
+void postOrder(TreeNode* tree);
