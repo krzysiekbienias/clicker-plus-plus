@@ -7,11 +7,11 @@
 #include "binary_tree/dfs.hpp"
 
 // Declare your find_successor interface here.
-BinaryTreeNode *findSuccessor(BinaryTreeNode *tree, BinaryTreeNode *node) {
-    std::vector<BinaryTreeNode *> inorderTraversal;
+TreeNode *findSuccessor(TreeNode *tree, TreeNode *node) {
+    std::vector<TreeNode *> inorderTraversal;
     inOrderRecursive(tree, inorderTraversal);
     for (int i = 0; i < inorderTraversal.size() - 1; ++i) {
-        BinaryTreeNode *currentNode = inorderTraversal[i];
+        TreeNode *currentNode = inorderTraversal[i];
         if (node != currentNode) //we may also compare pointer not value necessary
             continue;
         //when we travers entire inorderTraversal and still not get the node we are looking for

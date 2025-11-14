@@ -1,14 +1,14 @@
 #pragma once
 
-class BinaryTreeNode {
+class TreeNode {
     public:
         int m_value;
-        BinaryTreeNode* left;
-        BinaryTreeNode* right;
-        BinaryTreeNode* parent;
+        TreeNode* left;
+        TreeNode* right;
+        TreeNode* parent;
         //constructor
 
-        explicit BinaryTreeNode(int value) {
+        explicit TreeNode(int value) {
             this->m_value = value;
             left = nullptr;
             right = nullptr;
@@ -16,7 +16,7 @@ class BinaryTreeNode {
         }
 
         //destructor
-        ~BinaryTreeNode() {
+        ~TreeNode() {
             delete left;
             delete right;
         }

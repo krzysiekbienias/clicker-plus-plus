@@ -2,6 +2,6 @@
 #include<vector>
 #include "binary_tree/binary_tree_node.hpp"
 
-std::vector<int> branchSums(BinaryTreeNode* root);
+std::vector<int> branchSums(TreeNode* root);
 
-void branchSumsHelper(BinaryTreeNode* root,int runningSum,std::vector<int>&results);
+void branchSumsHelper(TreeNode* root,int runningSum,std::vector<int>&results);

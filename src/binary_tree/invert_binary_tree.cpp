@@ -4,23 +4,22 @@
 #include <any>
 
 
-void invertBinaryTree(BinaryTreeNode* tree) {
+void invertBinaryTree(TreeNode* tree) {
     if (tree==nullptr) {
         return;
     }
     std::swap(tree->left,tree->right);
     invertBinaryTree(tree->left);
     invertBinaryTree(tree->right);
-
 }
 
 
-void invertBinaryTreeBFS(BinaryTreeNode* tree) {
+void invertBinaryTreeBFS(TreeNode* tree) {
     if (!tree) return ;
-    std::queue<BinaryTreeNode*> q;
+    std::queue<TreeNode*> q;
     q.push(tree);
     while (!q.empty()) {
-        BinaryTreeNode *tempNode = q.front();
+        TreeNode *tempNode = q.front();
         q.pop();
         std::swap(tempNode->left, tempNode->right);
         if (tempNode->left) q.push(tempNode->left);

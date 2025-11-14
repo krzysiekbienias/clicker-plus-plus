@@ -2,6 +2,6 @@
 
 #include "binary_tree_node.hpp"
 
-void invertBinaryTree(BinaryTreeNode* tree);
+void invertBinaryTree(TreeNode* tree);
 
-void invertBinaryTreeBFS(BinaryTreeNode* tree);
+void invertBinaryTreeBFS(TreeNode* tree);

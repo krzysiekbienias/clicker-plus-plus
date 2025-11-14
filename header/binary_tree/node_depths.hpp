@@ -1,6 +1,6 @@
 #pragma once
 #include "binary_tree_node.hpp"
 
-void nodeDepthHelper(BinaryTreeNode* root,int currentDepth,int& sum);
+void nodeDepthHelper(TreeNode* root,int currentDepth,int& sum);
 
-int nodeDepths(BinaryTreeNode* root);
+int nodeDepths(TreeNode* root);
