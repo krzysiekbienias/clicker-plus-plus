@@ -1,15 +1,13 @@
 
 bool isPalindrome(int x){
     if (x<0) return false;
-    //also when we have number ending with zeros cannot be palindrome for instance 120 but not 0
     if (x%10==0 && x!=0) return false;
-
-    int rev =0;
-    while (rev>x){
-        rev=rev*10+x%10;
+    int hr=0; //hr = half reverse
+    while(hr<x){
+        hr=hr*10+x%10;
         x/=10;
     }
-    return (x==rev|| x==rev/10);
+    return (x==hr || x==hr/10);
 
 }
 
