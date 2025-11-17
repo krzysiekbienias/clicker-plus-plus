@@ -5,7 +5,7 @@
 
 namespace comb {
 
-static constexpr uint64_t DEFAULT_CAP = 1'000'000ULL;
+static constexpr uint64_t DEFAULT_CAP = 80'000'000ULL;
 
 // Safe multiply with cap check: returns nullopt if a*b > cap
 inline std::optional<uint64_t> mul_cap(uint64_t a, uint64_t b, uint64_t cap) {
@@ -94,7 +94,13 @@ inline std::optional<uint64_t> nPk_rep_bounded(unsigned n, unsigned k, uint64_t 
     return pow_bounded(n, k, cap); // n^k
 }
 
-
+inline int nCkInterview(int n,int k) {
+    long long ans=1;
+    for (int i=1;i<=k;++i) {
+        ans*=(n-k+i)/i;
+    }
+    return (int) ans;
+}
 
 
 } // namespace comb

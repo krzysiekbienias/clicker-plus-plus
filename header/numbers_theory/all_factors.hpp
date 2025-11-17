@@ -1,4 +1,4 @@
 # pragma once
+# include <vector>
 
-
-vector<int> Solution::allFactors(int n);
+std::vector<int> allFactors(int n);

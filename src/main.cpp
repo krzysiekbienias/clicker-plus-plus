@@ -74,16 +74,34 @@
 #include "famous_algorithms/fisher_yates.hpp"
 #include "linked_list/coding_platform_setup.hpp"
 #include "strings/minimum_characters_for_words.hpp"
+#include "stack/best_digits.hpp"
+#include "numbers_theory/armstrong_number.hpp"
+#include "bit_manipulation/bitmask_utils.hpp"
+#include "utils/counting_tool_kit.hpp"
+#include "utils/combinatorics_engine.hpp"
+#include "heap/maximum_average_pass_ratio.hpp"
+#include "numbers_theory/quotient_and_reminder.hpp"
+#include "math_and_geometry/log_with_any_base.hpp"
+#include "hash_maps_and_sets/maximum_average_mark.hpp"
+#include "binary_tree/burn_a_tree.hpp"
+#include "priority_queue/trending_hashtag_analysis.hpp"
+#include "dynamic_programming/subset_that_sum_to_k.hpp"
+#include "dynamic_programming/dice_throws.hpp"
+
+using namespace stl;
+using namespace io;
+
+
 
 int main() {
-    using namespace stl;
-    using namespace io;
+    int nbOfDice=2;
+    int target=7;
+    int sides=6;
 
-    cout << "Welcome to Clicker++! 🧟‍♂️\n";
-    vector<string> input = {"this", "that", "did", "deed", "them!", "a"};
+    cout<<diceThrows(nbOfDice,sides,target)<<'\n';
 
-    auto res=minimumCharactersForWords(input);
-    print_utils::printVector(res);
+
+
 
     return 0;
 }
