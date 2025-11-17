@@ -82,6 +82,10 @@ using u64 = std::uint64_t;
 using Str = std::string;
 using Svw = std::string_view;
 
+using VI=std::vector<int>;
+using VVI=std::vector<std::vector<int>>;
+
+
 // --- heap-y gotowe do użycia ---
 //template<class T>
 //using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
