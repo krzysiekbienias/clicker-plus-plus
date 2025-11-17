@@ -17,4 +17,19 @@ int nthFibbonaci(int n){
     std::unordered_map<int, int> lookup;
     return nthFibbonaci(n, lookup);
 }
+//interviewBit not the fastest
+int nthFibWithMod(int A) {
+    constexpr int MOD=1'000'000'007;
+    if (A<=0) return 0;
+    if (A==1 || A==2) {
+        return 1;
+    }
+    long long a=1,b=1;
+    for (int i=3;i<=A;++i) {
+        long long c=(a+b)%MOD;
+        a=b;
+        b=c;
+    }
+    return (int)b;
 
+}
