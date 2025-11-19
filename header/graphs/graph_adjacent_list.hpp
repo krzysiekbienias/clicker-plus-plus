@@ -27,6 +27,10 @@ public:
 
     bool hasCycle(vector<string>& cycleOut) const;
 
+    void printAdjList(std::ostream& os=std::cout) const;
+
+    vector<string> dijkstra(string start);
+
 private:
     bool m_directed{true};
     unordered_map<string,vector<Edge>> m_adjList;

@@ -153,3 +153,30 @@ bool Graph::hasCycle(vector<string>& cycleOut) const{
     }
     return false;
 }
+
+
+void Graph::printAdjList(std::ostream& os) const {
+    if (m_adjList.empty()) {
+        os << "# Graph is empty\n";
+        return;
+    }
+
+    os << "# directed: " << (m_directed ? "true" : "false") << "\n";
+
+    for (const auto& [u, neighbors] : m_adjList) {
+        os << u << ": ";
+
+        bool first = true;
+        for (const auto& e : neighbors) {
+            if (!first) {
+                os << " ";
+            }
+            first = false;
+
+            // nazwa sąsiada + waga w nawiasie
+            os << e.to << "(" << e.weight << ")";
+        }
+
+        os << "\n";
+    }
+}
