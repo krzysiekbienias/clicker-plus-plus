@@ -1,30 +1,29 @@
-# include<string>
-# include<vector>
-#include <unordered_map>
-#include <unordered_set>
 #include <algorithm>
-#include <queue>
+
 #include "graphs/graph_adjacent_list.hpp"
+#include "std_aliases.hpp"
+
+using namespace stl;
 
 //constructor
 Graph::Graph(bool directed):m_directed(directed) {}
 
 
-bool Graph::addVertex(const std::string &v) {
+bool Graph::addVertex(const string &v) {
     // try emplace returns the pair<iterator, bool> so the second is a bool everything fine
-    return m_adjList.try_emplace(v,std::vector<std::string>{}).second;
+    return m_adjList.try_emplace(v,vector<Edge>{}).second;
 }
 
-void Graph::addEdge(const std::string& u, const std::string& v) {
+void Graph::addEdge(const string& u, const string& v,int weight) {
     addVertex(u);
     addVertex(v);
-    m_adjList[u].push_back(v);
+    m_adjList[u].push_back(Edge{v,weight});
     //it handles automatic connection in both directions
-    if (!m_directed) m_adjList[v].push_back(u);
+    if (!m_directed) m_adjList[v].push_back(Edge{u,weight});
 }
 
-std::vector<std::string> Graph::getVertices() const {
-    std::vector<std::string> vertices;
+vector<string> Graph::getVertices() const {
+    vector<string> vertices;
     vertices.reserve(m_adjList.size());
     for (const auto &[k,_]:m_adjList) {
         vertices.push_back(k);
@@ -33,8 +32,8 @@ std::vector<std::string> Graph::getVertices() const {
 }
 // PERFORMANCE: return by const reference to avoid copying potentially large
 // adjacency lists; ensures O(1) access while preventing external modification.
-const std::vector<std::string>& Graph::getNeighbors(const std::string& v)const {
-    static const std::vector<std::string> neighbors;
+const vector<Graph::Edge>& Graph::getNeighbors(const string& v)const {
+    static const vector<Edge> neighbors;//dummy vector of edges to hold neighbors.
     auto it=m_adjList.find(v);
     return (it==m_adjList.end()) ? neighbors:it->second;
     //it->second is vector as well!
@@ -44,34 +43,37 @@ size_t Graph::vertexCount() const {
     return m_adjList.size();
 }
 
-std::vector<std::string> Graph::dfs(const std::string & start) const {
-    std::vector<std::string> order;
+vector<string> Graph::dfs(const string & start) const {
+    vector<string> order;
     auto it=m_adjList.find(start);
     if (it==m_adjList.end()) return order;
 
-    std::unordered_set<std::string> visited;
-    std::vector<std::string> stack{start};
+    unordered_set<string> visited;
+    vector<string> stack{start};
 
     while (!stack.empty()) {
-        std::string u=stack.back();
+        string u=stack.back();
         stack.pop_back();
         if (!visited.insert(u).second) continue;
         order.push_back(u);
         const auto neighbors=getNeighbors(u);
         for (auto it =neighbors.rbegin();it!=neighbors.rend();++it) {
-            if (!visited.count(*it)) stack.push_back(*it);
+            const string& v=it->to;
+            if (!visited.count(v)) {
+                stack.push_back(v);
+            }
         }
     }
 return order;
 }
 
-std ::vector<std::string>Graph::bfs(const std::string& start)const{
-    std::vector<std::string> order;
+std ::vector<string>Graph::bfs(const string& start)const{
+    vector<string> order;
     auto it=m_adjList.find(start);
     if(it==m_adjList.end()) return order;
 
-    std::unordered_set<std::string>visited;
-    std::queue<std::string> q;
+    unordered_set<string>visited;
+    queue<string> q;
 
     visited.insert(start);
     q.push(start);
@@ -80,8 +82,12 @@ std ::vector<std::string>Graph::bfs(const std::string& start)const{
         auto u=q.front();
         q.pop();
         order.push_back(u);
-        for(const auto& w: getNeighbors(u)){
-            if(visited.insert(w).second) q.push(w);
+        const auto & neighbors=getNeighbors(u);
+        for(const auto& e: neighbors){
+            const string& w=e.to;
+            if (visited.insert(w).second) {
+                q.push(w);
+            }
         }
     }
     return order;
@@ -89,9 +95,9 @@ std ::vector<std::string>Graph::bfs(const std::string& start)const{
 
 enum{UNVISITED=0,VISITING=1,VISITED=2};
 
-bool Graph::hasCycle(std::vector<std::string>& cycleOut) const{
-    std::unordered_map<std::string,int> state;
-    std::unordered_map<std::string,std::string> parent; //parent[child]=parentNode
+bool Graph::hasCycle(vector<string>& cycleOut) const{
+    unordered_map<string,int> state;
+    unordered_map<string,string> parent; //parent[child]=parentNode
     state.reserve(m_adjList.size()*2);
     //1) Initiate states for all vertexes that are keys
     for  (const auto & [u,_]:m_adjList){
@@ -105,16 +111,16 @@ bool Graph::hasCycle(std::vector<std::string>& cycleOut) const{
         auto originVertex =u;//DEBUG
         const auto neighbors= getNeighbors(u);
         for (const auto &v:neighbors){
-            auto targetVertex =v;//DEBUG structured binding
-            if(!state.count(v)) state[v]=UNVISITED;
+            auto targetVertex =v.to;//DEBUG structured binding
+            if(!state.count(targetVertex)) state[targetVertex]=UNVISITED;
         }
     }
-    std::function<bool(const std::string&)> dfsCycle=[&](const std::string& u)->bool{
+    std::function<bool(const string&)> dfsCycle=[&](const string& u)->bool{
         state[u]=VISITING;
         //get from outer function neighbours
         const auto neighbors= getNeighbors(u);
-        for (const auto& v:neighbors){
-
+        for (const auto& e:neighbors){
+            const string &v=e.to;
             if(state[v]==UNVISITED){
                 parent[v]=u;//remember how we get to v
                 if(dfsCycle(v)) return true;
@@ -123,14 +129,14 @@ bool Graph::hasCycle(std::vector<std::string>& cycleOut) const{
             else if (state[v]==VISITING){
 
                 //back-edge for active path->we have cycle
-                std::vector<std::string> back;
+                vector<string> back;
                 auto x=u;
                 back.push_back(u);
                 while (x!=v){
                     x=parent[x];
                     back.push_back(x);
                 }
-                std::reverse(back.begin(),back.end());
+                reverse(back.begin(),back.end());
                 back.push_back(v);
                 cycleOut=std::move(back);
                 return true;

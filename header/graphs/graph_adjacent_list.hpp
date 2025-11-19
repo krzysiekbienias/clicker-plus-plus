@@ -1,27 +1,33 @@
 #pragma once
-# include<string>
-# include<vector>
-#include <unordered_map>
+
+#include "std_aliases.hpp"
+
+using namespace stl;
 
 class Graph {
-private:
-    bool m_directed;
-    std::unordered_map<std::string,std::vector<std::string>> m_adjList;
+
 
 public:
-    explicit Graph(bool directed =false);
+    struct Edge {
+        string to;
+        int weight;
+    };
 
-    bool addVertex( const std::string& v);
-    void addEdge(const std::string & u ,const std::string & v);
+    explicit Graph(bool directed =true);
 
-    std::vector<std::string> getVertices() const;
-    const std::vector<std::string>& getNeighbors(const std::string &v) const;
+    bool addVertex( const string& v);
+    void addEdge(const string & u ,const string & v,int weight=1);
+
+    vector<std::string> getVertices() const;
+    const vector<Edge>& getNeighbors(const string &v) const;
     size_t vertexCount()const;
 
-    std::vector<std::string> bfs(const std::string& start) const;
-    std::vector<std::string> dfs(const std::string& start) const;
+    vector<string> bfs(const string& start) const;
+    vector<string> dfs(const string& start) const;
 
-    bool hasCycle(std::vector<std::string>& cycleOut) const;
+    bool hasCycle(vector<string>& cycleOut) const;
 
-
+private:
+    bool m_directed{true};
+    unordered_map<string,vector<Edge>> m_adjList;
 };
