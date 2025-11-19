@@ -8,6 +8,9 @@ class Graph {
 
 
 public:
+    using Vertex =string;
+    using Weight =int;
+
     struct Edge {
         string to;
         int weight;
@@ -15,23 +18,23 @@ public:
 
     explicit Graph(bool directed =true);
 
-    bool addVertex( const string& v);
-    void addEdge(const string & u ,const string & v,int weight=1);
+    bool addVertex( const Vertex& v);
+    void addEdge(const Vertex & u ,const Vertex & v,Weight w=1);
 
-    vector<std::string> getVertices() const;
-    const vector<Edge>& getNeighbors(const string &v) const;
+    vector<Vertex> getVertices() const;
+    const vector<Edge>& getNeighbors(const Vertex &v) const;
     size_t vertexCount()const;
 
-    vector<string> bfs(const string& start) const;
-    vector<string> dfs(const string& start) const;
+    vector<Vertex> bfs(const Vertex& start) const;
+    vector<Vertex> dfs(const Vertex& start) const;
 
     bool hasCycle(vector<string>& cycleOut) const;
 
     void printAdjList(std::ostream& os=std::cout) const;
 
-    vector<string> dijkstra(string start);
+    unordered_map<Vertex,Weight> dijkstra(Vertex start);
 
 private:
     bool m_directed{true};
-    unordered_map<string,vector<Edge>> m_adjList;
+    unordered_map<Vertex,vector<Edge>> m_adjList;
 };
