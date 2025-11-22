@@ -4,8 +4,6 @@ using namespace stl;
 
 vector<int> allFactors(int n) {
     vector<int> results;
-    if (n<=1) return {1};
-    //special check for even numbers to decrease the numbers of iterations
 
     for (int p=1;p*p<=n;p++) {
         if (n%p==0) {
