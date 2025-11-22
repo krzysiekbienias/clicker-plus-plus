@@ -13,11 +13,36 @@
 namespace print_utils {
 
 template <typename T>
-void printVector(const std::vector<T>& vec, const std::string& label = "") {
-    if (!label.empty()) std::cout << label << ": ";
-    for (const auto& item : vec) std::cout << item << " ";
+    void printVector(const std::vector<T>& vec,
+                     const std::string& label = "",
+                     std::size_t perLine = 0)    // 0 = brak zawijania (stare zachowanie)
+    {
+    if (!label.empty()) {
+        std::cout << label << ": ";
+    }
+
+    if (perLine == 0) {
+        // Stare, proste zachowanie
+        for (const auto& item : vec) {
+            std::cout << item << " ";
+        }
+        std::cout << "\n";
+        return;
+    }
+
+    // Nowe: zawijanie po perLine elementów
+    for (std::size_t i = 0; i < vec.size(); ++i) {
+        std::cout << vec[i] << " ";
+        if ((i + 1) % perLine == 0 && i + 1 < vec.size()) {
+            std::cout << "\n";
+            // Możesz ewentualnie dodać wcięcie po labelu:
+            if (!label.empty()) {
+                std::cout << "  "; // małe wcięcie dla kolejnych linii
+            }
+        }
+    }
     std::cout << "\n";
-}
+    }
 
 template <typename T>
 void printList(const std::list<T>& lst, const std::string& label = "") {
