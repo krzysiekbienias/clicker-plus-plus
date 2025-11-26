@@ -29,3 +29,23 @@ vector<int> primeNumbers(int n) {
     return primes;
 }
 
+int nthPrime(int k) {
+    if (k<=0) {
+        throw std::invalid_argument("n must be >=1 becasue it is nth number");
+    }
+
+    int limit=std::max(15,15*k);
+    while (true) {
+        std::vector<char> isPrime=sieve(limit);
+        int count =0; //we will increase counter until we get k
+        for (int i=2;i<=limit;++i) {
+            if (isPrime[i]) {
+                count++;
+                if (count==k) {
+                    return i;
+                }
+            }
+        }
+        limit*=2;
+    }
+}

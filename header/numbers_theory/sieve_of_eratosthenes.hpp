@@ -1,5 +1,6 @@
 #pragma once
 
 
-vector<int> sieve(int n);
+vector<char> sieve(int n);
 vector<int> primeNumbers(int n);
+int nthPrime(int k);
