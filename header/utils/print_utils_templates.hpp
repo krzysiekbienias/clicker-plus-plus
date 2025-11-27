@@ -126,4 +126,22 @@ void printUnorderedMapOfUnorderedSets(const std::unordered_map<K, std::unordered
         std::cout << "}\n";
     }
 }
+
+    template <typename T>
+    void printVecOfVec(const std::vector<std::vector<T>>& mat,
+                     const std::string& label = "")
+{
+    if (!label.empty()) {
+        std::cout << label << ":\n";
+    }
+
+    for (const auto& row : mat) {
+        std::cout << "[ ";
+        for (const auto& item : row) {
+            std::cout << item << " ";
+        }
+        std::cout << "]\n";
+    }
+}
+
 }
