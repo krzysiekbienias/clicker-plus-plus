@@ -1,11 +1,12 @@
 #include <std_aliases.hpp>
 using namespace stl;
 
-vector<vector<int>> generate(int numRows){
+vector<vector<int>> generatePascalTriangle(int numRows){
+    if (numRows==0) return {};
     vector<vector<int>> pt;
     //pierwszy wiersz sklada sie tylko z {{1}}
     pt.push_back({1});
-    for (int i=1 ;i<numRows;++i){
+    for (int i=1;i<numRows;++i){
         // potrzebujemy poprzedni wiersz bo to building block dla kolejnego
         //moze byc const bo nie bedziemy go zmieniac tylko jako punkt odniesienia
         const vector<int>&  prev=pt.back();

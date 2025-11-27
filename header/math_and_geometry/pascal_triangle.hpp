@@ -1,3 +1,3 @@
-#prama once
+#pragma once
 
-vector<vector<int>> generate(int numRows);
+vector<vector<int>> generatePascalTriangle(int numRows);
