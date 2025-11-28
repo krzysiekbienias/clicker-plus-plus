@@ -8,7 +8,6 @@ bool isPalindrome(int x){
         x/=10;
     }
     return (x==hr || x==hr/10);
-
 }
 
 /*1221

@@ -21,7 +21,8 @@ int longestCommonSubsequence(string A,string B) {
     return dp[rows-1][cols-1];
 }
 //AlgoExpert
-vector<char> longestCommonSubsequenceExplicite(string A,string B) {
+vector<char> longestCommonSubsequenceExplicit(string A,string B) {
+
     int rows=A.size()+1;
     int cols=B.size()+1;
 
