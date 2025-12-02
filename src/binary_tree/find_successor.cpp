@@ -24,3 +24,14 @@ TreeNode *findSuccessor(TreeNode *tree, TreeNode *node) {
     return nullptr;
 
 }
+
+
+TreeNode * getLeftmost(TreeNode* node) {
+    if (node==nullptr) return nullptr;
+    while (node->left!=nullptr)
+        node=node->left;
+    return node;
+}
+TreeNode* findSuccessorUsingParentPointer(TreeNode* node) {
+
+}
