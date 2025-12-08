@@ -63,6 +63,15 @@ namespace io {
     using std::endl;
 }
 
+namespace str {
+    using std::string;
+    using std::string_view;
+    using std::stringstream;
+    using std::istringstream;
+    using std::ostringstream;
+    using std::ostream;
+}
+
 namespace rnd {
     // Silniki (tylko aliasy typów)
     using RNG64      = std::mt19937_64;
