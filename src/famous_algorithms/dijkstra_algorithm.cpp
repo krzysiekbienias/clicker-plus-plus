@@ -4,18 +4,31 @@
 
 using namespace stl;
 
+AdjMat buildAdjMat(vector<vector<vector<int>>> edges){
+    AdjMat res;
+    vector<EdgeAlgoExpert> ve;
+
+    for (Vertex u=0;u< edges.size();u++){
+        vector<vector<int>>& vWeight=edges[u];
+        vector<EdgeAlgoExpert>& outVec=res[u];
+        for (vector<int> & item:vWeight){
+            int to=item[0];
+            int weight=item[1];
+            EdgeAlgoExpert e{to,weight};
+            outVec.push_back(e);
+        }
+
+        }
+    return res;
+}
 
 // Implement your dijkstra_algorithm logic here.
 vector<int> dijkstrasAlgorithm(int start, vector<vector<vector<int>>> edges) {
     int startingDistance=INT_MAX;
-    using Vertex = int;
-    vector<EdgeAlgoExpert> ve;
+
+   auto adjlist= buildAdjMat(edges);
     unordered_map<int,int> distanceMap ;
     unordered_set<int> visited;
-    for ( const auto & neighbours :edges) {
-        for ( const auto &item : neighbours)
-            ve.push_back({item[0],item[1]});
-    }
     for ( Vertex u=0;u<edges.size();++u) {
         distanceMap[u]=startingDistance;
     }
