@@ -84,25 +84,42 @@
 #include "math_and_geometry/log_with_any_base.hpp"
 #include "hash_maps_and_sets/maximum_average_mark.hpp"
 #include "binary_tree/burn_a_tree.hpp"
+#include "binary_tree/find_successor.hpp"
 #include "priority_queue/trending_hashtag_analysis.hpp"
 #include "dynamic_programming/subset_that_sum_to_k.hpp"
 #include "dynamic_programming/dice_throws.hpp"
+#include "numbers_theory/sieve_of_eratosthenes.hpp"
+#include "dynamic_programming/water_area.hpp"
+#include "math_and_geometry/pascal_triangle.hpp"
+#include "numbers_theory/is_prime.hpp"
+#include "binary_tree/binary_tree_paths.hpp"
+#include "famous_algorithms/dijkstra_algorithm.hpp"
+#include "utils/string_utils.hpp"
+#include "math_and_geometry/computational_geometry.hpp"
+#include "numbers_theory/die_hard3.hpp"
 
 using namespace stl;
 using namespace io;
+using namespace str;
+
 
 
 
 int main() {
-    int nbOfDice=2;
-    int target=7;
-    int sides=6;
+    int start{0};
+    vector<vector<vector<int>>> edges = {
+        {{1, 7}}, {{2, 6}, {3, 20}, {4, 3}}, {{3, 14}}, {{4, 2}}, {}, {}};
 
-    cout<<diceThrows(nbOfDice,sides,target)<<'\n';
-
-
+    dijkstrasAlgorithm(start,edges);
 
 
-    return 0;
+
+
+
+
+
+
+
+
+
 }
-
