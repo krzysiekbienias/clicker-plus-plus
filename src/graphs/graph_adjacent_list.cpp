@@ -197,6 +197,62 @@ unordered_map<Graph::Vertex, int> Graph::dijkstra(Vertex source) {
     return distanceMap;
 }
 
+unordered_map<Graph::Vertex, int> Graph::calculateInDegreeMap() const {
+    std::unordered_map<Vertex,int> inDegree;
+    inDegree.reserve(2*m_adjList.size());
+    for (const auto&[u,edges]:m_adjList) {
+        inDegree.try_emplace(u,0);
+        for (const auto &e:edges) {
+            const Vertex& v=e.to;
+            if (!inDegree.count(v)) {
+                inDegree[v]=0;
+            }
+            inDegree[v]+=1;
+        }
+    }
+    return inDegree;
+}
+
+vector<Graph::Vertex> Graph::topologicalSortKahn()const {
+    vector<Vertex> order;
+    //it only may be performed on a directed graph
+    if (!m_directed) {
+        return order;
+    }
+
+    auto inDegree=calculateInDegreeMap();
+
+    queue<Vertex> q;
+    for (const auto & item:inDegree) {
+        Vertex u=item.first;
+        int deg=item.second;
+        if (deg==0) {
+            q.push(u);
+        }
+    }
+    while (!q.empty()) {
+        Vertex u=q.front();
+        q.pop();
+        order.push_back(u);
+        //now we visit neighbors of u and decrease in degree of neighbors
+        const auto & neighbours=getNeighbors(u);
+        for (const auto & neighbour:neighbours) {
+            const Vertex v=neighbour.to;
+            auto it=inDegree.find(v);
+            if (it==inDegree.end()) continue;
+            it->second--;
+            if (it->second==0) {
+                q.push(v);
+            }
+        }
+    }
+    //check if there is no cycle
+    if (order.size()!=inDegree.size()) {
+        order.clear();
+    }
+    return order;
+}
+
 
 void Graph::printAdjList(std::ostream &os) const {
     if (m_adjList.empty()) {
@@ -213,17 +269,37 @@ void Graph::printAdjList(std::ostream &os) const {
         keys.push_back(u);
     }
 
-    // 2) sortujemy klucze
-    std::sort(keys.begin(), keys.end());
+    // 2) sprawdzamy, czy wszystkie wierzchołki są "liczbowe"
+    auto isNumeric = [](const std::string& s) {
+        if (s.empty()) return false;
+        return std::all_of(s.begin(), s.end(), [](unsigned char c) {
+            return std::isdigit(c);
+        });
+    };
 
-    // 3) wypisujemy w porządku rosnącym po kluczu
+    bool allNumeric = std::all_of(keys.begin(), keys.end(),
+                                  [&](const Vertex& v){ return isNumeric(v); });
+
+    // 3) sortujemy:
+    //    - numerycznie (po wartości) jeśli np. "1","2","10"
+    //    - leksykograficznie jeśli np. "A","B","C"
+    if (allNumeric) {
+        std::sort(keys.begin(), keys.end(),
+                  [](const Vertex& a, const Vertex& b) {
+                      return std::stoi(a) < std::stoi(b);
+                  });
+    } else {
+        std::sort(keys.begin(), keys.end());
+    }
+
+    // 4) wypisujemy w porządku rosnącym po kluczu
     for (const auto &u: keys) {
         os << u << ":\n";
 
         const auto &neighbors = m_adjList.at(u);
 
-        for (const auto &e:neighbors) {
-            os<<"  "<<e<<"\n"; //leverage from << operator for Edge
+        for (const auto &e: neighbors) {
+            os << "  " << e << "\n"; // leverage operator<< for Edge
         }
         os << "\n";
     }
@@ -248,10 +324,28 @@ void Graph::printDijkstraResult(const Vertex& source,
         keys.push_back(v);
     }
 
-    // 2) posortuj po nazwie wierzchołka
-    std::sort(keys.begin(), keys.end());
+    // 2) sprawdź, czy wszystkie są numeryczne ("1","2","10")
+    auto isNumeric = [](const std::string& s) {
+        if (s.empty()) return false;
+        return std::all_of(s.begin(), s.end(), [](unsigned char c) {
+            return std::isdigit(c);
+        });
+    };
 
-    // 3) wypisz w kolejności rosnącej
+    bool allNumeric = std::all_of(keys.begin(), keys.end(),
+                                  [&](const Vertex& v){ return isNumeric(v); });
+
+    // 3) sortowanie: numeryczne vs leksykograficzne
+    if (allNumeric) {
+        std::sort(keys.begin(), keys.end(),
+                  [](const Vertex& a, const Vertex& b) {
+                      return std::stoi(a) < std::stoi(b);
+                  });
+    } else {
+        std::sort(keys.begin(), keys.end());
+    }
+
+    // 4) wypisanie wyników
     for (const auto& v : keys) {
         os << "  " << v << " : ";
         int dist = distanceMap.at(v);
@@ -265,4 +359,3 @@ void Graph::printDijkstraResult(const Vertex& source,
 
     os << "=============================================\n";
 }
-

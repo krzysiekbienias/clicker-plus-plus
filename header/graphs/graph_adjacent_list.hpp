@@ -45,7 +45,12 @@ public:
                              const std::unordered_map<Vertex, int> &distanceMap,
                              std::ostream &os=std::cout) const;
 
+    vector<Vertex> topologicalSortKahn()const;
+
 private:
+
     bool m_directed{true};
     unordered_map<Vertex, vector<Edge>> m_adjList;
+
+    unordered_map<Graph::Vertex, int> calculateInDegreeMap() const; //better to prepare a map of all degrees in one shot
 };
