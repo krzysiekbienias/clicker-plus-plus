@@ -432,3 +432,21 @@ Graph::DistanceMatrix Graph::buildDistanceMatrix() const {
     }
     return result;
 }
+
+
+Graph::DistanceMatrix Graph::floydWarshall()const {
+    DistanceMatrix dm=buildDistanceMatrix();
+    vector<vector<int>> &dist=dm.distMat;
+    int n=static_cast<int>(dm.indexToVertex.size());
+    for (int k=0;k<n;++k) {
+        for (int i=0;i<n;i++) {
+            if (dist[i][k]==INF) continue;
+            for (int j=0;j<n;++j){
+                if (dist [k][j]==INF) continue;
+                dist[i][j]=std::min(dist[i][j],dist[i][k]+dist[k][j]);
+            }
+        }
+
+    }
+    return dm;
+}

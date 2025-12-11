@@ -57,6 +57,8 @@ public:
 
     vector<Vertex> topologicalSortKahn()const;
     DistanceMatrix buildDistanceMatrix() const;
+
+    DistanceMatrix floydWarshall()const;
 private:
 
     bool m_directed{true};
