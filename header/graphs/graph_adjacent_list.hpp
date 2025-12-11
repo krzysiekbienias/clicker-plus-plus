@@ -19,6 +19,16 @@ public:
         }
     };
 
+    static constexpr int INF =1'000'000'000;
+
+    struct DistanceMatrix {
+        vector<Vertex> indexToVertex;
+        unordered_map<Vertex,int> vertexToIndex;
+        vector<vector<int>> distMat;
+
+        friend std::ostream& operator<< (ostream& os, const DistanceMatrix& dm);
+    };
+
     explicit Graph(bool directed = true);
 
     bool addVertex(const Vertex &v);
@@ -46,11 +56,12 @@ public:
                              std::ostream &os=std::cout) const;
 
     vector<Vertex> topologicalSortKahn()const;
-
+    DistanceMatrix buildDistanceMatrix() const;
 private:
 
     bool m_directed{true};
     unordered_map<Vertex, vector<Edge>> m_adjList;
 
-    unordered_map<Graph::Vertex, int> calculateInDegreeMap() const; //better to prepare a map of all degrees in one shot
+    unordered_map<Vertex, int> calculateInDegreeMap() const; //better to prepare a map of all degrees in one shot
+
 };

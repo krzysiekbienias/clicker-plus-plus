@@ -172,9 +172,9 @@ unordered_map<Graph::Vertex, int> Graph::dijkstra(Vertex source) {
     pq.emplace(0, source);
     while (!pq.empty()) {
         //snap for analysis
-        auto & item  = pq.top();
-        int dist=item.first;
-        Vertex u =item.second;
+        auto &item = pq.top();
+        int dist = item.first;
+        Vertex u = item.second;
 
         //remove from top
         pq.pop();
@@ -198,56 +198,56 @@ unordered_map<Graph::Vertex, int> Graph::dijkstra(Vertex source) {
 }
 
 unordered_map<Graph::Vertex, int> Graph::calculateInDegreeMap() const {
-    std::unordered_map<Vertex,int> inDegree;
-    inDegree.reserve(2*m_adjList.size());
-    for (const auto&[u,edges]:m_adjList) {
-        inDegree.try_emplace(u,0);
-        for (const auto &e:edges) {
-            const Vertex& v=e.to;
+    std::unordered_map<Vertex, int> inDegree;
+    inDegree.reserve(2 * m_adjList.size());
+    for (const auto &[u,edges]: m_adjList) {
+        inDegree.try_emplace(u, 0);
+        for (const auto &e: edges) {
+            const Vertex &v = e.to;
             if (!inDegree.count(v)) {
-                inDegree[v]=0;
+                inDegree[v] = 0;
             }
-            inDegree[v]+=1;
+            inDegree[v] += 1;
         }
     }
     return inDegree;
 }
 
-vector<Graph::Vertex> Graph::topologicalSortKahn()const {
+vector<Graph::Vertex> Graph::topologicalSortKahn() const {
     vector<Vertex> order;
     //it only may be performed on a directed graph
     if (!m_directed) {
         return order;
     }
 
-    auto inDegree=calculateInDegreeMap();
+    auto inDegree = calculateInDegreeMap();
 
     queue<Vertex> q;
-    for (const auto & item:inDegree) {
-        Vertex u=item.first;
-        int deg=item.second;
-        if (deg==0) {
+    for (const auto &item: inDegree) {
+        Vertex u = item.first;
+        int deg = item.second;
+        if (deg == 0) {
             q.push(u);
         }
     }
     while (!q.empty()) {
-        Vertex u=q.front();
+        Vertex u = q.front();
         q.pop();
         order.push_back(u);
         //now we visit neighbors of u and decrease in degree of neighbors
-        const auto & neighbours=getNeighbors(u);
-        for (const auto & neighbour:neighbours) {
-            const Vertex v=neighbour.to;
-            auto it=inDegree.find(v);
-            if (it==inDegree.end()) continue;
+        const auto &neighbours = getNeighbors(u);
+        for (const auto &neighbour: neighbours) {
+            const Vertex v = neighbour.to;
+            auto it = inDegree.find(v);
+            if (it == inDegree.end()) continue;
             it->second--;
-            if (it->second==0) {
+            if (it->second == 0) {
                 q.push(v);
             }
         }
     }
     //check if there is no cycle
-    if (order.size()!=inDegree.size()) {
+    if (order.size() != inDegree.size()) {
         order.clear();
     }
     return order;
@@ -270,7 +270,7 @@ void Graph::printAdjList(std::ostream &os) const {
     }
 
     // 2) sprawdzamy, czy wszystkie wierzchołki są "liczbowe"
-    auto isNumeric = [](const std::string& s) {
+    auto isNumeric = [](const std::string &s) {
         if (s.empty()) return false;
         return std::all_of(s.begin(), s.end(), [](unsigned char c) {
             return std::isdigit(c);
@@ -278,14 +278,14 @@ void Graph::printAdjList(std::ostream &os) const {
     };
 
     bool allNumeric = std::all_of(keys.begin(), keys.end(),
-                                  [&](const Vertex& v){ return isNumeric(v); });
+                                  [&](const Vertex &v) { return isNumeric(v); });
 
     // 3) sortujemy:
     //    - numerycznie (po wartości) jeśli np. "1","2","10"
     //    - leksykograficznie jeśli np. "A","B","C"
     if (allNumeric) {
         std::sort(keys.begin(), keys.end(),
-                  [](const Vertex& a, const Vertex& b) {
+                  [](const Vertex &a, const Vertex &b) {
                       return std::stoi(a) < std::stoi(b);
                   });
     } else {
@@ -306,10 +306,9 @@ void Graph::printAdjList(std::ostream &os) const {
 }
 
 
-void Graph::printDijkstraResult(const Vertex& source,
-                                const std::unordered_map<Vertex,int>& distanceMap,
-                                std::ostream& os) const
-{
+void Graph::printDijkstraResult(const Vertex &source,
+                                const std::unordered_map<Vertex, int> &distanceMap,
+                                std::ostream &os) const {
     if (distanceMap.empty()) {
         os << "# Dijkstra result is empty\n";
         return;
@@ -320,12 +319,12 @@ void Graph::printDijkstraResult(const Vertex& source,
     // 1) zbierz wszystkie wierzchołki
     std::vector<Vertex> keys;
     keys.reserve(distanceMap.size());
-    for (const auto& [v, _] : distanceMap) {
+    for (const auto &[v, _]: distanceMap) {
         keys.push_back(v);
     }
 
     // 2) sprawdź, czy wszystkie są numeryczne ("1","2","10")
-    auto isNumeric = [](const std::string& s) {
+    auto isNumeric = [](const std::string &s) {
         if (s.empty()) return false;
         return std::all_of(s.begin(), s.end(), [](unsigned char c) {
             return std::isdigit(c);
@@ -333,12 +332,12 @@ void Graph::printDijkstraResult(const Vertex& source,
     };
 
     bool allNumeric = std::all_of(keys.begin(), keys.end(),
-                                  [&](const Vertex& v){ return isNumeric(v); });
+                                  [&](const Vertex &v) { return isNumeric(v); });
 
     // 3) sortowanie: numeryczne vs leksykograficzne
     if (allNumeric) {
         std::sort(keys.begin(), keys.end(),
-                  [](const Vertex& a, const Vertex& b) {
+                  [](const Vertex &a, const Vertex &b) {
                       return std::stoi(a) < std::stoi(b);
                   });
     } else {
@@ -346,7 +345,7 @@ void Graph::printDijkstraResult(const Vertex& source,
     }
 
     // 4) wypisanie wyników
-    for (const auto& v : keys) {
+    for (const auto &v: keys) {
         os << "  " << v << " : ";
         int dist = distanceMap.at(v);
         if (dist == INT_MAX) {
@@ -358,4 +357,78 @@ void Graph::printDijkstraResult(const Vertex& source,
     }
 
     os << "=============================================\n";
+}
+
+std::ostream &operator<<(std::ostream &os, const Graph::DistanceMatrix &dm) {
+    const auto &idxToV = dm.indexToVertex;
+    const auto &dist = dm.distMat;
+    const int n = static_cast<int>(idxToV.size());
+
+    if (n == 0) {
+        os << "# DistanceMatrix: <empty>\n";
+        return os;
+    }
+
+    // Mały helper do ładnego wypisywania jednej komórki
+    auto printCell = [&](int d) {
+        if (d >= Graph::INF / 2) {
+            os << std::setw(12) << "INF";
+        } else {
+            os << std::setw(12) << d;
+        }
+    };
+
+    os << "# DistanceMatrix (Floyd–Warshall input / output)\n";
+    os << "REMARK: value in (*) is a index corresponding to the Vertex name.\n";
+
+    // Column Header
+    os << std::setw(12) << "";
+    for (int j = 0; j < n; ++j) {
+        os << std::setw(12) << idxToV[j] + "(" + std::to_string(j) + ")";
+    }
+    os << '\n';
+
+    // Separator
+    os << std::string(12 + 12 * n, '-') << '\n';
+
+    // Rows: label row + value
+    for (int i = 0; i < n; ++i) {
+        os << std::setw(12) << idxToV[i] + "(" + std::to_string(i) + ")";
+        for (int j = 0; j < n; ++j) {
+            printCell(dist[i][j]);
+        }
+        os << '\n';
+    }
+
+    return os;
+}
+
+Graph::DistanceMatrix Graph::buildDistanceMatrix() const {
+    DistanceMatrix result;
+
+    //assign vertex to the index
+    result.indexToVertex = getVertices();
+    const int n = static_cast<int>(result.indexToVertex.size());
+    result.vertexToIndex.reserve(n * 2);
+    for (int i = 0; i < n; ++i) {
+        result.vertexToIndex[result.indexToVertex[i]] = i;
+    }
+    // initialize INF and 0 on the main diagonal
+    result.distMat.assign(n, vector<int>(n, INF));
+    for (int i = 0; i < n; i++) {
+        result.distMat[i][i] = 0;
+    }
+    //fill in based on adjacent list
+    for (const auto &[u,edges]: m_adjList) {
+        auto it = result.vertexToIndex.find(u);
+        if (it == result.vertexToIndex.end()) continue;
+        int fromIdx = it->second;
+        for (const auto &e: edges) {
+            auto jt = result.vertexToIndex.find(e.to);
+            if (jt == result.vertexToIndex.end()) continue;
+            int toIdx = jt->second;
+            result.distMat[fromIdx][toIdx] = std::min(result.distMat[fromIdx][toIdx], e.weight);
+        }
+    }
+    return result;
 }
