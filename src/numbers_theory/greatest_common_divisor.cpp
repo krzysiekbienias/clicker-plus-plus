@@ -5,3 +5,19 @@ int findGCD(int a, int b) {
     return findGCD(b,a%b);
 }
 
+int gcdIterative(int a, int b) {
+    int gcd=1;
+    for (int i=1;i<=std::min(a,b);++i) {
+        if (a%i==0 && b%i==0) gcd=i;
+    }
+    return gcd;
+}
+
+int gcdIterativeEuclides(int a, int b) {
+    while (b>0) {
+        int r=a%b;
+        a=b;
+        b=r;
+    }
+    return a;
+}

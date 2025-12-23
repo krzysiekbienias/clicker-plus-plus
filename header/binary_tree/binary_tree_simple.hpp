@@ -8,6 +8,7 @@ class BinaryTree {
         BinaryTree* left;
         BinaryTree* right;
 
+
         BinaryTree(int val);
         ~BinaryTree();
         
