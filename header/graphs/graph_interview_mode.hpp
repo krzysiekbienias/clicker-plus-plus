@@ -13,4 +13,4 @@ struct Edge {
 
 using GraphLC = vector<vector<Edge>>;
 
-GraphLC buildGraph(int n,vector<vector<int>> vecRep);
+GraphLC buildGraph(int n,const vector<vector<int>>& vecRep);
