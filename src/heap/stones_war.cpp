@@ -1,6 +1,6 @@
 #include<vector>
 #include<queue>
-#include"priority_queue/stones_war.hpp"
+#include "../../header/heap/stones_war.hpp"
 
 // Implement your stones_war logic here.
 int lastStoneWeight(const std::vector<int>& stones){
