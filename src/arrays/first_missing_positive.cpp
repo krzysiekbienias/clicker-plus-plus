@@ -8,7 +8,7 @@ int firstMissingPositiveSortingAllowed(vector<int>& nums)
     int candidate = 1;
     //disregard all negative
     auto it = std::lower_bound(nums.begin(), nums.end(), 1);
-    for (it; it != nums.end(); ++it)
+    for (; it != nums.end(); ++it)
     {
         int x = *it;
         if (x < candidate)
