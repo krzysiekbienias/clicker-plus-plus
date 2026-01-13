@@ -1,6 +1,9 @@
 #include "dynamic_programming/lis.hpp"
 
 #include <gtest/gtest.h>
+#include <gmock/gmock-matchers.h>
+
+using ::testing::ElementsAre;
 
 TEST(LISLen,EmptyVec)
 {
@@ -24,5 +27,11 @@ TEST(LISLen,StrictlyDecreasing)
 TEST(LISLen,UdemyExample)
 {
     std::vector<int> v={7,5,2,4,7,2,3,6,4,5,12,1,7};
-    EXPECT_EQ(longestIncreasingSubsequenceLen(v),1);
+    EXPECT_EQ(longestIncreasingSubsequenceLen(v),5);
+}
+
+TEST(LIS,UdemyExample)
+{   //here we test explicit subsequence.
+    std::vector<int> v={7,5,2,4,7,2,3,6,4,5,12,1,7};
+    EXPECT_THAT(longestIncreasingSubsequence(v),ElementsAre(2,3,4,5,12));
 }
