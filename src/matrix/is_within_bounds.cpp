@@ -8,8 +8,5 @@ bool isWithinBounds(int r, int c, const std::vector<std::vector<int>>& matrix){
         nbRows=(int)matrix.size();
         nbCols=(int)matrix[0].size();
     }
-    if (r>=0 && r<nbRows && c>=0 &&c<nbCols) {
-        return true;
-    }
-    return false;
+    return (r>=0 && r<nbRows) && (c>=0 &&c<nbCols);
 }
