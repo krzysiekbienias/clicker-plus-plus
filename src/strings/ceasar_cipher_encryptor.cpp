@@ -2,18 +2,20 @@
 #include "strings/ceasar_cipher_encryptor.hpp"
 
  //Implement your ceasar_cipher_encryptor logic here.
-std::string ceasarCypherEncryptor(std::string order,int k){
-    std::string encryptedOrder ="";
-    k%=26;
-    for (char ch:order){
-        if (static_cast<int>(ch)+k<=122) {
-            int shiftedASCII=static_cast<int>(ch)+k;
-            encryptedOrder+=static_cast<char>(shiftedASCII);
-        }
-        else{
-            int shiftedASCII=(static_cast<int>(ch)+k)%122;
-            encryptedOrder+=static_cast<char>(96+shiftedASCII);
+
+
+std::string ceasarCipherEncryptor(const std::string& order,int k){
+    k %= 26;
+    std::string encryptedMess = "";
+    if (order.empty()) return "";
+    for (unsigned char uch: order) {
+        if ('a' <= uch && uch <= 'z') {
+            encryptedMess += char('a' + (uch - 'a' + k) % 26); //uch -a->number, (uch -'a'+k)%26
+        } else if ('A' <= uch && uch <= 'Z') {
+            encryptedMess += char('A' + (uch - 'A' + k) % 26);
+        } else {
+            encryptedMess += char(uch);
         }
     }
-    return encryptedOrder;
+    return encryptedMess;
 }
