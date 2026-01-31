@@ -9,7 +9,7 @@ struct Point{
     
 };
 
-std::vector<Point> toPoint(const std::vector<std::vector<int>>& points);
+static std::vector<Point> toPoint(const std::vector<std::vector<int>>& points);
 
 
 int lineThroughPoints(const std::vector<std::vector<int>>& points);
