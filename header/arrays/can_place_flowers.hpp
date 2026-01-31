@@ -1,4 +1,5 @@
 #pragma once
-using namespace stl;
 
-bool canPlaceFlowers(vector<int>& flowerbed, int n);
+#include<vector>
+
+bool canPlaceFlowers(std::vector<int>& flowerbed, int n);
