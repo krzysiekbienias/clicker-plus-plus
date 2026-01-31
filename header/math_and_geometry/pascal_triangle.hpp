@@ -1,3 +1,3 @@
 #pragma once
 
-vector<vector<int>> generatePascalTriangle(int numRows);
+std::vector<std::vector<int>> generatePascalTriangle(int numRows);
