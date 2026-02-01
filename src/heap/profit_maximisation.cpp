@@ -9,7 +9,7 @@ int profitMaximisation(const vector<int> &tickets, int k) {
     }
     int maxProfit=0;
     int i=0;
-    while (i<k) {
+    while (i<k && pq.top()>0) {
         int top=pq.top();
         maxProfit+=top;
         top--;

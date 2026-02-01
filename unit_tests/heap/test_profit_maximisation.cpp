@@ -95,6 +95,19 @@ TEST(ProfitMaximisation, EmptySeats_ReturnsZero) {
     EXPECT_EQ(profitMaximisation(seats, 5), 0);
 }
 
+TEST(ProfitMaximisation,InterviewBitTests)
+{
+    vector<int> seats={2,3};
+    vector<int> seats2={1,4};
+    //First, you serve the seat with number = 3.
+    //Then with 2 and then with 2.
+    //hence answer = 3 + 2 + 2 = 7.
+    EXPECT_EQ(profitMaximisation(seats,3),7);
+    // You give both tickets from the row with 4 seats.
+    // 4 + 3 = 7.
+    EXPECT_EQ(profitMaximisation(seats2,2),7);
+}
+
 TEST(ProfitMaximisation, KZero_ReturnsZero) {
     vector<int> seats{5, 1, 2};
     EXPECT_EQ(profitMaximisation(seats, 0), 0);
