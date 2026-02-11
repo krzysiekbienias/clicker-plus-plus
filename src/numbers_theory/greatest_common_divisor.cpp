@@ -1,8 +1,9 @@
 #include <std_aliases.hpp>
 
-int findGCD(int a, int b) {
+int gcdRecursive(int a, int b) {
     if (b==0) return a;
-    return findGCD(b,a%b);
+    int r=a%b;
+    return gcdRecursive(b,r);
 }
 
 int gcdIterative(int a, int b) {

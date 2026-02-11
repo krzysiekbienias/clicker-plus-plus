@@ -3,27 +3,34 @@
 using namespace stl;
 
 double calcualateDelta(int passed,int all) {
-    long double t=(long double) all;
-    return double(all-passed)/(t*(t+1.0L));
+    double delta=(double)(all-passed)/((double)all*(all+1));
+    return delta;
 }
 
 double maxAverageRatio(vector<vector<int>>& classes, int extraStudents){
-    priority_queue<pair<double,int>> startingRatio;
+    priority_queue<pair<double,int>> gainHeap;
+    double totalRatio=0;
+    double gainTotal=0;
+    double initialTotalRatio=0;
     for (int i =0;i<classes.size();++i) {
-        startingRatio.emplace(calcualateDelta(classes[i][0],classes[i][1]),i);
+        initialTotalRatio +=(double)classes[i][0]/(double)classes[i][1];
+        gainHeap.emplace(calcualateDelta(classes[i][0],classes[i][1]),i);
     }
-    double sum=0;
-    while (extraStudents>0) {
-        auto [g,i]=startingRatio.top();
 
-        startingRatio.pop();
-        sum+=g;
+    double maxAverage=0;
+    while (extraStudents>0) {
+        auto [marginalGain,i]=gainHeap.top();
+
+        gainHeap.pop();
+        gainTotal+=marginalGain;
         classes[i][0]++;
         classes[i][1]++;
-        startingRatio.emplace(calcualateDelta(classes[i][0],classes[i][1]),i);
+        double newDelta=calcualateDelta(classes[i][0],classes[i][1]);
+        gainHeap.emplace(newDelta,i);
         extraStudents--;
     }
-
-    return (double) sum/ classes.size();
+    totalRatio=(initialTotalRatio+gainTotal);
+    maxAverage=totalRatio/ classes.size();
+    return maxAverage;
 }
 

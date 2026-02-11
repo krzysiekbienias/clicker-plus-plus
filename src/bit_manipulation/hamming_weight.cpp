@@ -1,4 +1,10 @@
 #include "bit_manipulation/hamming_weight.hpp"
+#include <std_aliases.hpp>
+
+using namespace stl;
+using namespace io;
+using namespace str;
+
 
 // Implement your hamming_weight logic here.
 int hammingWeight(int n){
@@ -6,6 +12,7 @@ int hammingWeight(int n){
     while  (n>0){
         count+=n&1;
         n>>=1;
+        std::cout<<std::bitset<8>(n)<<std::endl;
     }
     return count;
 }
