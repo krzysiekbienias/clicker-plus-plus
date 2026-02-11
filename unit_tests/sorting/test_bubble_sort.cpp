@@ -1,6 +1,13 @@
 #include "gtest/gtest.h"
 #include "sorting/bubble_sort.hpp"
 
+
+TEST(BubbleSort, Trival_Case) {
+    std::vector<int> input{1, 2, 10, 50, 5};
+    std::vector<int> expected{1, 2, 5, 10, 50};
+    EXPECT_EQ(bubbleSort(input), expected);
+}
+
 TEST(BubbleSort, AlreadySorted) {
     std::vector<int> input{1, 2, 3, 4, 5};
     std::vector<int> expected{1, 2, 3, 4, 5};

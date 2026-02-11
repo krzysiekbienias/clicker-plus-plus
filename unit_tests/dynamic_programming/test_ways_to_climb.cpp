@@ -23,3 +23,8 @@ TEST(WaysToClimbTest, NoValidJumps) {
 TEST(WaysToClimbTest, LargeStepWithOneJump) {
     EXPECT_EQ(waysToClimb(10, {2}), 1);       // only one path: 2+2+2+2+2
 }
+
+TEST(WaysToClimbTest,UdemyTest)
+{
+    EXPECT_EQ(waysToClimb(10,{2,4,5,8}),11);
+}
