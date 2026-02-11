@@ -1,3 +1,4 @@
 #pragma once
+#include<vector>
 
-int waterArea(vector<int> heights);
+int waterArea(std::vector<int> heights);

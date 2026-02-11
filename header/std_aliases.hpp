@@ -22,6 +22,7 @@
 #include <chrono>
 #include <iomanip>
 #include <random>   // generatory i rozkłady
+#include <fstream>
 
 
 namespace stl {
@@ -46,9 +47,6 @@ namespace stl {
 
     template<class T> using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
-
-
-
     //operacje na kontenerach
     using std::sort;
 }
@@ -61,10 +59,10 @@ namespace io {
     using std::cout;
     using std::cin;
     using std::endl;
+
 }
 
 namespace str {
-    using std::string;
     using std::string_view;
     using std::stringstream;
     using std::istringstream;
@@ -97,14 +95,5 @@ using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using Str = std::string;
 using Svw = std::string_view;
-
-using VI=std::vector<int>;
 using VVI=std::vector<std::vector<int>>;
-
-
-// --- heap-y gotowe do użycia ---
-//template<class T>
-//using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-//
-//template<class T>
-//using MaxHeap = std::priority_queue<T>; // domyślnie max-heap
+using VI=std::vector<int>;

@@ -2,5 +2,5 @@
 # include "std_aliases.hpp"
 
 
-double calcualateDelta(int passed,int all);
-double maxAverageRatio(vector<vector<int>>& classes, int extraStudents);
+double calculateDelta(int passed,int all);
+double maxAverageRatio(std::vector<std::vector<int>>& classes, int extraStudents);
