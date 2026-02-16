@@ -14,3 +14,10 @@ TEST(GroupAnagrams,BaseCaseFromLeetCode)
     std::vector<std::vector<std::string>> actual=groupAnagrams(words);
     std::vector<std::vector<std::string>> expected={{"bat"},{"nat","tan"},{"ate","eat","tea"}};
 }
+
+TEST(GroupAnagrams,BaseCaseTwo)
+{
+    std::vector<std::string> words={"yo","act","flop","tac","foo","cat","oy","olfp"};
+    std::vector<std::vector<std::string>> actual=groupAnagrams(words);
+    std::vector<std::vector<std::string>> expected={{"yo","oy"},{"flop","olfp"},{"act","tac","cat"},{"foo"}};
+}
