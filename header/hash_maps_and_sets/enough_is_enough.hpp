@@ -1,0 +1,1 @@
+#pragma once#include <string>#include <vector>std::vector<int> enoughIsEnough(std::vector<int> arr, int n);
