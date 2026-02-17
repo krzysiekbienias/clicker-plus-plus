@@ -7,7 +7,7 @@ bool jumpToTheEnd(const std::vector<int> &nums) {
     //we are going to traverse from the end
     if (nums.empty()) return true;
     int destination = nums.size() - 1;
-    for (int i = destination; i >= 0; --i) {
+    for (int i = destination-1; i >= 0; --i) {
         if (i + nums[i] >= destination) {
             destination = i;
         }
