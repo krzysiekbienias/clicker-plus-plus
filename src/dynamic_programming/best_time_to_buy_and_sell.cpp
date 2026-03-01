@@ -12,3 +12,24 @@ int maxProfitBruteForce(const std::vector<int>& prices) {
     }
     return maxProfit;
 }
+
+
+int maxProfitSingleTransaction(const std::vector<int>& prices)
+{
+    int buyPrice=INT_MAX;
+    int maxProfit=0;
+
+    for ( int price:prices)
+    {
+        if (price<buyPrice)
+        {
+            buyPrice=price;
+        }
+        else
+        {
+            int profit=price-buyPrice;
+            maxProfit=std::max(maxProfit,profit);
+        }
+    }
+    return maxProfit;
+}
