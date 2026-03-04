@@ -10,15 +10,15 @@ void backtrack(int index, const std::string & digits, const std::vector<std::str
         return;
     }
     int digit =digits[index]-'0';
-    for (char c:mapping[digit]){
+    std::string keypadLetters=mapping[digit]; //(keypadLetters per digit e.g "ghi"=mapping[4] )
+    for (char c:keypadLetters){
         current.push_back(c);
         backtrack(index+1, digits, mapping, current, result);
         current.pop_back();
     }
 }
 
-// Declare your phone_number_mnemonics interface here.
-std::vector<std::string> phoneNumberMnemonics(const std::string phoneNumber){
+std::vector<std::string> phoneNumberMnemonics(const std::string& phoneNumber){
     //edge case
     std::vector<std::string> mapping={
         "0",
@@ -38,6 +38,5 @@ std::vector<std::string> phoneNumberMnemonics(const std::string phoneNumber){
     // kick off parameters
     backtrack(0, phoneNumber, mapping, current, result);
     return result;
-    
-    
+
 }
