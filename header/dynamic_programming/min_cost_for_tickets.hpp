@@ -4,3 +4,4 @@
 
 
 int minimumCostTickets(const std::vector<int>& trainDays, const std::vector<int> & costs, int n);
+int minimumCostTickets(const std::vector<int>& days, const std::vector<int> & costs);

@@ -26,3 +26,25 @@ int minimumCostTickets(const std::vector<int>& trainDays, const std::vector<int>
     return dp[n-1];
 }
 
+//fire code version
+int minimumCostTickets(const std::vector<int>& days, const std::vector<int> & costs){
+    //prepare container for track day when we need to commute
+    int lastDrive=*max_element(days.begin(),days.end());
+    std::vector <bool> isTrainDay(lastDrive+1,false);
+    for(int day:days){
+        isTrainDay[day]=true;
+    }
+    std::vector<int>dp(lastDrive+1,0);
+    for (int i=1;i<=lastDrive;++i){
+        if (!isTrainDay[i]) {
+            dp[i]=dp[i-1];//no need to buy a ticket
+        }
+        else{
+            int dayCost=dp[std::max(0,i-1)]+costs[0]; //smart way to handle with i>=0
+            int weekCost=dp[std::max(0,i-7)]+costs[1]; //smart way to handle with i>=7
+            int monthCost=dp[std::max(0,i-30)]+costs[2]; //smart way to handle with i>=30
+            dp[i]=std::min({dayCost,weekCost,monthCost});
+        }
+    }
+    return dp[lastDrive];
+}
