@@ -14,4 +14,4 @@ bool isNumber(const std::string& s) {
     return std::all_of(s.begin()+startIdx,s.end(),::isdigit);
 }
 
-int calPoints(std::vector<std::string>& operations);
+int calPoints(const std::vector<std::string>& operations);

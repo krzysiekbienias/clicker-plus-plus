@@ -1,38 +1,40 @@
 #include<vector>
 #include<string>
 #include "stack/baseball_game.hpp"
+#include <stack>
 
-
-int calPoints(std::vector<std::string>& operations) {
-    std::vector<int> stack;
+int calPoints(const std::vector<std::string>& operations) {
+    std::stack<int> st;
     int result=0;
     for (std::string symbol:operations) {
         if (isNumber(symbol)) {
             int numericElement=std::stoi(symbol);
-            stack.push_back(numericElement);
+            st.push(numericElement);
         }
-        else if (symbol=="C") stack.pop_back();
+        else if (symbol=="C") st.pop();
 
         else if (symbol=="D") {
-            int topElement=stack.back();
+            int topElement=st.top();
             int newElement=topElement*2;
-            stack.push_back(newElement);
+            st.push(newElement);
         }
         else if (symbol=="+") {
-            int lastElement=stack.back();
-            stack.pop_back();
-            int secondToLast=stack.back();
+            int lastElement=st.top();
+            st.pop();
+            int secondToLast=st.top();
             //restore lastElement
-            stack.pop_back();
-            stack.push_back(secondToLast);
-            stack.push_back(lastElement);
+            st.pop();
+            st.push(secondToLast);
+            st.push(lastElement);
             int newElement=lastElement+secondToLast;
-            stack.push_back(newElement);
+            st.push(newElement);
         }
 
         }
-    for (int el : stack) {
-        result+=el;
+    while (!st.empty())
+    {
+        result+=st.top();
+        st.pop();
     }
     return result;
 }
