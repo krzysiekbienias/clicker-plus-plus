@@ -14,9 +14,9 @@ long long rearrangementForMinimalSignedValue(long long num) {
         rearranged=-stoll(s_num);
         return rearranged;
     }
-    {
-        std::sort(s_num.begin(),s_num.end());
-    }
+
+    std::sort(s_num.begin(),s_num.end());
+
     for (int i = 0; i < s_num.size(); ++i)
     {
         if (s_num[i]=='0') continue;
