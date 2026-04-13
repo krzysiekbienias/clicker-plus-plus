@@ -3,16 +3,15 @@
 using namespace stl;
 
 
-vector<char> minimumCharactersForWords(vector<string> words) {
+vector<char> minimumCharactersForWords(const vector<string>& words) {
     unordered_map<char,int> globalMaxMap;
-    for (string & word:words) {
-        unordered_map<char,int> wordMap;
+    unordered_map<char,int> wordMap;
+    for (const string & word:words) {
+        wordMap.clear();
         for (char ch:word)
             wordMap[ch]++;
         for (auto & [ch,count]:wordMap) {
-            auto it =globalMaxMap.find(ch);
-            if (it==globalMaxMap.end()) globalMaxMap[ch]=count; //ch first time in globalMaxMap
-            else it->second=std::max(it->second,count);
+            globalMaxMap[ch]=std::max(globalMaxMap[ch],count);
         }
     }
     vector<char> result;
@@ -20,5 +19,4 @@ vector<char> minimumCharactersForWords(vector<string> words) {
         result.insert(result.end(),count,ch);
     }
     return result;
-
 }

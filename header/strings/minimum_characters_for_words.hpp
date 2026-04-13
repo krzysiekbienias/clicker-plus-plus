@@ -2,4 +2,4 @@
 #include "std_aliases.hpp"
 
 
-vector<char> minimumCharactersForWords(vector<string> words);
+std::vector<char> minimumCharactersForWords(const std::vector<std::string>& words);
