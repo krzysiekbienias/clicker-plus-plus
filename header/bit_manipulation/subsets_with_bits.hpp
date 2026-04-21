@@ -2,4 +2,4 @@
 
 #include "std_aliases.hpp"
 
-vector<vector<int>> powerset(vector<int> array);
+std::vector<std::vector<int>> powerset(std::vector<int> array);
