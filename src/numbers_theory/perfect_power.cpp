@@ -3,7 +3,7 @@
 
 
 
-int isPower(int num) {
+bool isPower(i64 num) {
     vector<int> primesFact=primeFactors(num);
 
     map<int,int> exponentsMap;
