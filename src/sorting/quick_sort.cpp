@@ -2,32 +2,45 @@
 #include <vector>
 #include "sorting/quick_sort.hpp"
 
-//function to find pivot index
-int partition(std::vector<int>& arr,int left, int right){
-    int pivot=arr[right];  //We chose pivot in start way as a classic approach pivot is a value NOT index
-    int i=left;
-    for (int j=left;j<right;++j){
-        if (arr[j]<pivot){
-            std::swap(arr[i], arr[j]);
-            i++;
+static void quickSortHelper(std::vector<int>& arr,int startIdx,int endIdx)
+{   int pivotIdx=startIdx;
+    int leftIdx=startIdx+1;
+    int rightIdx=endIdx;
+    if (startIdx>=endIdx)
+    {
+        return;
+    }
+    while (leftIdx<=rightIdx)
+    {
+        if (arr[leftIdx]>arr[pivotIdx] && arr[rightIdx]<arr[pivotIdx])
+        {
+        std::swap(arr[leftIdx],arr[rightIdx]);
         }
-    }
-    //After FOR loop
-    std::swap(arr[i],arr[right]); // put pivot in correct place
-    
-    return i;
-}
+        if (arr[leftIdx]<=arr[pivotIdx])
+        {
+            leftIdx++;
+        }
+        if (arr[rightIdx]>=arr[pivotIdx])
+        {
+            rightIdx--;
+        }
 
-void quickSortHelper(std::vector<int>& arr,int left,int right){
-    if (left<right) {
-        int pivotIndex=partition(arr,left,right);
-        quickSortHelper(arr, left, pivotIndex-1);   // Sort left half
-        quickSortHelper(arr, pivotIndex+1, right);   //Sort right half
     }
-    
-}
+    std::swap(arr[pivotIdx],arr[rightIdx]);//at this moment arr[pivotIdx] is in the correct place
+    //now right indx is like pointer index
+    bool leftSubarraySmaller=(rightIdx-1-startIdx<endIdx-(rightIdx+1));
+    if (leftSubarraySmaller)
+    {
+        quickSortHelper(arr,startIdx,rightIdx-1);
+        quickSortHelper(arr,rightIdx+1,endIdx);
+    }
+    else
+    {
+        quickSortHelper(arr,rightIdx+1,endIdx);
+        quickSortHelper(arr,startIdx,rightIdx-1);
+    }
 
-//Convinience wrapper
+}
 
 std::vector<int> quickSort(std::vector<int>&arr){
     if (arr.empty()) return {};
