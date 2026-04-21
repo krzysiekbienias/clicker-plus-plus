@@ -81,6 +81,7 @@ TEST(IntToRoman, ThousandsAndUpperRange) {
         {1984, "MCMLXXXIV"},
         {2014, "MMXIV"},
         {2421, "MMCDXXI"},
+        {2500, "MMD"},
         {2999, "MMCMXCIX"},
         {3000, "MMM"},
         {3444, "MMMCDXLIV"},
@@ -90,4 +91,10 @@ TEST(IntToRoman, ThousandsAndUpperRange) {
     for (auto& [n, roman] : cases) {
         EXPECT_EQ(intToRoman(n), roman) << "n=" << n;
     }
+}
+
+TEST(IntToRoman, Above1000) {
+
+    EXPECT_EQ(intToRoman(2500),"MMD");
+
 }
