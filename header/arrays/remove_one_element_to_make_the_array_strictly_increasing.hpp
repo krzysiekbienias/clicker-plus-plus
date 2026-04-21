@@ -3,4 +3,4 @@
 
 using namespace stl;
 
-bool canBeIncreasing(vector<int>& nums);
+bool canBeIncreasing(const vector<int>& nums);
