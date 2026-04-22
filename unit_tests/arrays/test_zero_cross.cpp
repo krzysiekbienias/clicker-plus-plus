@@ -14,7 +14,7 @@ TEST(ZeroCrossTest, BasicTest) {
         {7, 0, 9}
     };
 
-    zeroCross(matrix);
+    setMatrixZeros(matrix);
 
     EXPECT_EQ(matrix, expected);
 }
@@ -30,7 +30,7 @@ TEST(ZeroCrossTest, AllZerosTest) {
         {0, 0}
     };
 
-    zeroCross(matrix);
+    setMatrixZeros(matrix);
 
     EXPECT_EQ(matrix, expected);
 }
@@ -46,7 +46,7 @@ TEST(ZeroCrossTest, NoZerosTest) {
         {3, 4}
     };
 
-    zeroCross(matrix);
+    setMatrixZeros(matrix);
 
     EXPECT_EQ(matrix, expected);
 }
@@ -56,7 +56,7 @@ TEST(ZeroCrossTest, EmptyMatrixTest) {
 
     std::vector<std::vector<int>> expected;
 
-    zeroCross(matrix);
+    setMatrixZeros(matrix);
 
     EXPECT_EQ(matrix, expected);
 }
