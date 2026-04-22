@@ -13,7 +13,7 @@ std::vector<int> bubbleSortDebug(std::vector<int>& array){
         for (int j=0;j<i;++j){
             if (array[j]>array[j+1]) {
                 std::swap(array[j], array[j+1]);
-                isSorted=false; //out of order pair has been found;
+                isSorted=false; //out-of-order pair has been found;
             }
         }
         if(isSorted){

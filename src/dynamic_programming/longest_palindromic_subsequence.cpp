@@ -5,8 +5,9 @@ using namespace io;
 using namespace str;
 
 // Implement your logic here.
-int longestPalindromeSubseq(string s)
-{   int n=s.size();
+int longestPalindromeSubseq(const string& s)
+{
+    int n=s.size();
     vector<vector<int>> dp(n,vector<int>(n,0));
     //base case
     for (int i = 0; i < n; ++i)
