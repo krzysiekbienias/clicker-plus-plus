@@ -1,17 +1,14 @@
-#include <std_aliases.hpp>
-
-using namespace stl;
-using namespace io;
-using namespace str;
+#include <vector> 
 
 
-void rotateWithExtraArray(vector<int>& nums, int k)
+void rotateWithExtraArray(std::vector<int>& nums, int k)
 {
     if (nums.empty()) return;
     int n=nums.size();
 
-    k=k%n;//normalise
-    vector<int> res(n);
+    k=k%n; // avoid redundant full rotations (e.g. k=7 on n=7 is a no-op)
+    if (k==0) return;
+    std::vector<int> res(n);
 
     for (int i=0;i<n;i++)
     {
@@ -19,6 +16,6 @@ void rotateWithExtraArray(vector<int>& nums, int k)
         res[newIdx]=nums[i];
     }
 
-    nums=res;//copy into nums becasue we cannot return it
 
+    nums = std::move(res); // write back via ref; move avoids an extra O(n) copy
 }
