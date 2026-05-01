@@ -51,8 +51,8 @@ vector<int> longestIncreasingSubsequence(const vector<int> &arr ) {
     if (arr.empty()) return {};
     for (int i=1;i<n;i++) {
         for (int j=0;j<i;++j) {
-            if (arr[j]<arr[i] && dp[j]+1>dp[i]) {
-                dp[i]=dp[j]+1;
+            if (arr[j]<arr[i]) {
+                dp[i]=std::max(dp[i],dp[j]+1);
                 prev[i]=j;
             }
         }
