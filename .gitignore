@@ -44,6 +44,9 @@ install_manifest.txt
 /cmake-build-*/
 /ninja_build/
 
+# === Clangd cache ===
+.cache/
+
 # === IDE/Editor files ===
 
 # Xcode
