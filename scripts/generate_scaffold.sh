@@ -41,8 +41,9 @@ create_if_missing "$HEADER_FILE" \
 $'#pragma once\n\n#include <string>\n#include <vector>\n\n'
 
 create_if_missing "$TEST_FILE" \
-"#include \"${FOLDER}/${NAME}.hpp\"
+$'#include "'"${FOLDER}/${NAME}.hpp"'"
 #include <gtest/gtest.h>
-"
+#include "utils/haker_rank_io.hpp"
 
-echo "🎯 Done."
+// Argument for function: std::vector<int> readInputFileClassic(const std::string& path)
+// Use path like: data/hacker_rank_input_for_ut/<file>.txt'
