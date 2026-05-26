@@ -1,9 +1,6 @@
 #include "numbers_theory/divisible_by_60.hpp"
 #include <gtest/gtest.h>
-#include "utils/haker_rank_io.hpp"
 
-// Argument for function: std::vector<int> readInputFileClassic(const std::string& path)
-// Use path like: data/hacker_rank_input_for_ut/<file>.txt
 
 
 TEST (DivisibleBy60,TrivalCase)

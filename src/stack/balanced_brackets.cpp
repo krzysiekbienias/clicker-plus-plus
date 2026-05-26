@@ -2,7 +2,7 @@
 # include "unordered_set"
 # include "stack"
 
-// Implement your balanced_brackets logic here.
+
 bool balancedBracket(const std::string& str){
     std::unordered_set<char> setOfBrackets{'(',')','[',']','{','}'};
     std::unordered_map<char, char> bracketsMap{{'(',')'},{'[',']'},{'{','}'}};

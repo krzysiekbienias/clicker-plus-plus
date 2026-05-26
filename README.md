@@ -13,7 +13,7 @@ Whether you're just beginning your trek through the algorithm wastelands or prep
 
 - src/ – Corresponding C++ implementation files
 
-- unit\_tests/ – Google Test-based tests, grouped by topic
+- unit_tests/ – Google Test-based tests, grouped by topic
 
 - CMakeLists.txt – Modular build system via CMake
 

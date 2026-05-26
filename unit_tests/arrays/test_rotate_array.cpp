@@ -1,6 +1,6 @@
 #include "arrays/rotate_array.hpp"
 #include <gtest/gtest.h>
-#include "utils/haker_rank_io.hpp"
+
 
 TEST(RotateWithExtraArrayTest, BasicRotation) {
     std::vector<int> nums = {1, 2, 3, 4, 5};

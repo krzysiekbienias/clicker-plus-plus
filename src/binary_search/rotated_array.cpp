@@ -1,6 +1,7 @@
 #include <std_aliases.hpp>
 
 using namespace stl;
+//this is from interview bit probably
 
 int findMinInRotatedArray(const vector<int>&nums){
     int leftIdx=0;
