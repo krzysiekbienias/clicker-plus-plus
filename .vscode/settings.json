@@ -1,0 +1,21 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "testMate.cpp.test.executables": "${workspaceFolder}/build/test_environment",
+    "testMate.cpp.test.advancedExecutables": [
+        {
+            "pattern": "build/test_environment",
+            "cwd": "${workspaceFolder}/build",
+            "runTask": {
+                "before": ["build (Cursor)"]
+            }
+        }
+    ],
+    "testMate.cpp.debug.configTemplate": {
+        "type": "lldb",
+        "request": "launch",
+        "program": "${exec}",
+        "args": "${argsArray}",
+        "cwd": "${cwd}",
+        "preLaunchTask": "build (Cursor)"
+    }
+}

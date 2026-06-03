@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: test_environment (build/)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_environment",
+            "args": ["--gtest_filter=${input:gtestFilter}"],
+            "cwd": "${workspaceFolder}/build",
+            "preLaunchTask": "build (Cursor)"
+        },
+        {
+            "name": "Debug: clicker_plus_plus (build/)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/clicker_plus_plus",
+            "args": [],
+            "cwd": "${workspaceFolder}/build",
+            "preLaunchTask": "build (Cursor)"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "gtestFilter",
+            "type": "promptString",
+            "description": "GTest filter, e.g. NumberOfSpecialChars.*",
+            "default": "*"
+        }
+    ]
+}
