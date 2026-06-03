@@ -2,6 +2,18 @@
 
 using namespace stl;
 
+bool canPlaceFlowers2(const vector<int>& flowerbed, int n){
+    int count = 0;
+    int l=flowerbed.size();
+    for (int i=0;i<l;i++){
+        if(flowerbed[i]==0 && ((i==0) || (flowerbed[i-1]==0)) &&((i==l-1) || (flowerbed[i+1]==0))){
+            ++count;
+            ++i; //because of for it in total jump by 2 position
+        }     
+    }
+    return count>=n;
+}
+
 bool canPlaceFlowers(vector<int>& flowerbed, int n) {
     auto l = flowerbed.size();
     for (int i = 0; i < l && n > 0;) {
