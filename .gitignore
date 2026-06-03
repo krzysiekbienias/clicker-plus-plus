@@ -66,7 +66,8 @@ DerivedData/
 *.iml
 
 # VSCode
-.vscode/
+compile_commands.json
+#.vscode/
 
 # === System files ===
 .DS_Store
@@ -83,3 +84,5 @@ CMakeLists.txt
 
 # ===== Custom Files
 inkdrop_template.md
+
+#
