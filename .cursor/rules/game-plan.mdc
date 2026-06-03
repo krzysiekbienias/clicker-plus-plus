@@ -1,0 +1,52 @@
+---
+description: Generuje sekcję Game Plan dla gotowego rozwiązania – opis algorytmu (PL/EN), tabelka złożoności i commit message
+alwaysApply: true
+---
+
+# Game Plan Generator
+
+Kiedy użytkownik prosi o "game plan", "zrób game plan" lub podobne – wygeneruj sekcję według poniższego szablonu.
+
+## Wymagana struktura
+
+### 1. Opis algorytmu (dwa bloki cytatów)
+
+> 🇵🇱 **[Zwięzły opis algorytmu po polsku]**
+> Wyjaśnij kluczowy wzorzec (np. "prefix sum + hashmap częstości"). Opisz co trzymasz w pamięci, jakie pytanie zadajesz w każdym kroku i dlaczego inicjalizacja ma znaczenie. Maksymalnie 4–5 zdań.
+
+> 🇬🇧 **[Concise algorithm description in English]**
+> Mirror of the Polish block. Explain the key pattern, what you store, what question you ask at each step, and why the initialization matters. Max 4–5 sentences.
+
+### 2. Tabelka złożoności
+
+| ⏱ Time Complexity | 🗂 Space complexity |
+|-------------------|---------------------|
+| O(?)              | O(?)                |
+
+Pod tabelką dodaj **jedno zdanie** uzasadniające każdą złożoność (dlaczego czas taki, dlaczego pamięć taka).
+
+### 3. Commit message
+
+```
+<typ>(<zakres>): <krótki opis po angielsku, max 72 znaki>
+```
+
+- `typ`: `feat`, `fix`, `refactor`, `perf`, `test`, `docs`
+- `zakres`: nazwa katalogu lub pliku (np. `prefix_and_suffix`, `hash_maps`)
+- Opis: co rozwiązuje/dodaje, np. `add subarray sum counter using prefix sum + hashmap`
+
+## Przykład gotowego output
+
+> 🇵🇱 Kluczowy wzorzec to **prefix sum + hashmap częstości**. Idąc od lewej do prawej, trzymasz bieżącą sumę prefiksową `prefixSum` i dla każdej pozycji pytasz: ile razy wcześniej pojawiła się suma `prefixSum - k`? Każde takie wystąpienie oznacza subarray kończący się tutaj o sumie dokładnie `k`. Linia `freq[0] = 1` jest kluczowa – pozwala policzyć subarrayy startujące od indeksu 0. Dzięki hashmapie każda pozycja obsługiwana jest w czasie stałym, więc całe rozwiązanie działa w O(n).
+
+> 🇬🇧 The key pattern is **prefix sum + frequency hashmap**. Scanning left to right, you maintain a running prefix sum and at each step ask: how many times have I seen `prefixSum - k` before? Every such occurrence is a subarray ending here with sum exactly `k`. The line `freq[0] = 1` is the critical initialisation — it counts subarrays starting at index 0. Each position is processed in O(1) average, so the whole solution runs in O(n).
+
+| ⏱ Time Complexity | 🗂 Space complexity |
+|-------------------|---------------------|
+| O(n)              | O(n)                |
+
+Time is O(n) because we traverse the array once with O(1) average hashmap operations. Space is O(n) because in the worst case all prefix sums are distinct and stored in `freq`.
+
+```
+feat(prefix_and_suffix): add subarray sum counter using prefix sum + hashmap
+```
