@@ -54,3 +54,30 @@ bool subsetSumExistence(const vector<int> &arr, int k) {
     }
     return dp[rows - 1][k];
 }
+
+
+int subsetSumUnbounded(vector<int> &arr,int n)
+{
+    vector<int> dp(n+1,0);
+    dp[0]=1;
+    //sorting allows early termination and is not dominant
+    sort(arr.begin(),arr.end());
+    for (int x:arr)
+    {
+        for (int i = x; i < n+1; ++i)
+        {
+            {
+                dp[i]+=dp[i-x];
+            }
+        }
+    }
+    return dp[n];
+}
+
+
+int subsetSumArrLengthConstrain(vector<int> &arr,int n)
+{
+    vector<vector<int>> dp(arr.size()+1,vector<int>(n+1,0));
+    dp[0][0]=1;
+    return -1;
+}
