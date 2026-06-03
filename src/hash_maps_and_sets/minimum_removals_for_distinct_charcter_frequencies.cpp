@@ -14,7 +14,7 @@ int minDeletionsForDistinctCharactersFreq(std::string s)
     }
     for (auto& [ch,freq]:charFreq)
     {
-        while (freq>0 && seen.contains(freq))
+        while (freq>0 && seen.count(freq))
         {
             freq--;
             deletions++;

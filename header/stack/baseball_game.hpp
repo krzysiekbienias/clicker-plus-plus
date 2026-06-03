@@ -1,6 +1,8 @@
 #pragma once
-#include<vector>
-#include<string>
+#include <algorithm>
+#include <cctype>
+#include <string>
+#include <vector>
 
 inline
 bool isNumber(const std::string& s) {

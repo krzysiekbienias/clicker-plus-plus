@@ -1,28 +1,35 @@
 // common.hpp
 #pragma once
 
-#include <iostream>
-#include <vector>
+#include <algorithm>
 #include <array>
+#include <bitset>
+#include <chrono>
+#include <climits>
+#include <cmath>
+#include <cctype>
+#include <cstdlib>
+#include <deque>
+#include <fstream>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <optional>
+#include <queue>
+#include <random>
+#include <set>
+#include <stack>
+#include <stdexcept>
 #include <string>
 #include <string_view>
-#include <utility>
-#include <optional>
-#include <variant>
-#include <deque>
-#include <queue>
-#include <stack>
-#include <set>
-#include <unordered_set>
-#include <map>
 #include <unordered_map>
-#include <algorithm>
-#include <numeric>
-#include <limits>
-#include <chrono>
-#include <iomanip>
-#include <random>   // generatory i rozkłady
-#include <fstream>
+#include <unordered_set>
+#include <utility>
+#include <variant>
+#include <vector>
 
 
 namespace stl {

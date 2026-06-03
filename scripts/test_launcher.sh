@@ -5,4 +5,4 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_DIR="${BUILD_DIR:-build}"
 
 "${ROOT}/scripts/build.sh"
-"${ROOT}/${BUILD_DIR}/test_environment" ${1:+--gtest_filter="$1.*"}
+(cd "${ROOT}" && "${ROOT}/${BUILD_DIR}/test_environment" ${1:+--gtest_filter="$1.*"})

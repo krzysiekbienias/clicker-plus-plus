@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/test_environment",
             "args": ["--gtest_filter=${input:gtestFilter}"],
-            "cwd": "${workspaceFolder}/build",
+            "cwd": "${workspaceFolder}",
             "preLaunchTask": "build (Cursor)"
         },
         {
@@ -16,7 +16,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/clicker_plus_plus",
             "args": [],
-            "cwd": "${workspaceFolder}/build",
+            "cwd": "${workspaceFolder}",
             "preLaunchTask": "build (Cursor)"
         }
     ],

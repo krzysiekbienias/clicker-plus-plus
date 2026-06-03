@@ -1,4 +1,5 @@
 #include "arrays/apartment_hunting.hpp"
+#include <climits>
 #include <vector>
 
 int apartmentHunting(std::vector<std::unordered_map<std::string, bool>> blocks, std::vector<std::string> requirements) {

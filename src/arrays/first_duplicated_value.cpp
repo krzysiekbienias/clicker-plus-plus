@@ -1,4 +1,5 @@
-#include "unordered_set"
+#include <unordered_set>
+#include <vector>
 
 // Implement your first_duplicated_value logic here.
 int firstDuplicateValue(const std::vector<int>& array) {

@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <vector>
 
 bool isValidSubSequence(const std::vector<int>& array, const std::vector<int>& sequence) {
     size_t array_index=0;

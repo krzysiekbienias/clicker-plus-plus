@@ -4,7 +4,7 @@
     "testMate.cpp.test.advancedExecutables": [
         {
             "pattern": "build/test_environment",
-            "cwd": "${workspaceFolder}/build",
+            "cwd": "${workspaceFolder}",
             "runTask": {
                 "before": ["build (Cursor)"]
             }
@@ -17,5 +17,6 @@
         "args": "${argsArray}",
         "cwd": "${cwd}",
         "preLaunchTask": "build (Cursor)"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}"
 }

@@ -4,4 +4,4 @@
 #include <vector>
 
 
-int longestPalindromeSubseq(std::string s);
+int longestPalindromeSubseq(const std::string& s);
