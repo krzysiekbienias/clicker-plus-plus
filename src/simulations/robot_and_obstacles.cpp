@@ -17,7 +17,7 @@ struct VecHash
 static void turnLeft(int& dx,int& dy)
 {
     int oldDx=dx;
-    int oldDy=dy;
+    
 
     dx=-dy;
     dy=oldDx;
@@ -27,7 +27,6 @@ static void turnLeft(int& dx,int& dy)
 static void turnRight(int& dx,int& dy)
 {
     int oldDx=dx;
-    int oldDy=dy;
 
     dx=dy;
     dy=-oldDx;
