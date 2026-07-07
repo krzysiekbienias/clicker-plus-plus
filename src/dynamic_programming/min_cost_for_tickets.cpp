@@ -35,14 +35,15 @@ int minimumCostTickets(const std::vector<int>& days, const std::vector<int> & co
         isTrainDay[day]=true;
     }
     std::vector<int>dp(lastDrive+1,0);
+    dp[0]=0;//there is no cost before day 1
     for (int i=1;i<=lastDrive;++i){
         if (!isTrainDay[i]) {
             dp[i]=dp[i-1];//no need to buy a ticket
         }
         else{
-            int dayCost=dp[std::max(0,i-1)]+costs[0]; //smart way to handle with i>=0
-            int weekCost=dp[std::max(0,i-7)]+costs[1]; //smart way to handle with i>=7
-            int monthCost=dp[std::max(0,i-30)]+costs[2]; //smart way to handle with i>=30
+            int dayCost=dp[i-1]+costs[0];
+            int weekCost=dp[std::max(0,i-7)]+costs[1]; 
+            int monthCost=dp[std::max(0,i-30)]+costs[2];
             dp[i]=std::min({dayCost,weekCost,monthCost});
         }
     }
