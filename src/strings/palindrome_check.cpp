@@ -16,6 +16,20 @@ bool isPalindrome(std::string str) {
     return true;
 }
 
+static bool palindromeHelper(const std::string& str,int left,int right ){
+    if (left>=right)
+    //it is a case that handles with "" , "a", i gdy wskazniki sie mina
+    return true;
+    if (str[left]!=str[right]){
+        return false;
+    }
+    return palindromeHelper(str, left+1, right-1);
+}
+
+bool isPalindromeRecursion(const std::string& str){
+    int n=str.size();
+    return palindromeHelper(str, 0, n-1);
+}
 
 bool isPalindromeSentence(std::string str) {
     int left=0;
