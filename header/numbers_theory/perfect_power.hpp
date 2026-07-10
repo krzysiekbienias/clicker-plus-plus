@@ -1,3 +1,5 @@
 #pragma once
 
-int isPower(int num);
+#include <std_aliases.hpp>
+
+bool isPower(i64 num);
