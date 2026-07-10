@@ -31,9 +31,6 @@ int pathsInMatrix(const std::vector<std::vector<int>>& grid){
             dp[j][0]=0;
         }
     }
-    std::cout<<"After Filling in first row and column."<<'\n';
-    
-    rowByRowPrint(dp);
     for (int r=1;r<rows;r++){
         for (int c=1;c<cols;c++){
             if (grid[r][c]==0){
@@ -44,8 +41,6 @@ int pathsInMatrix(const std::vector<std::vector<int>>& grid){
             }
         }
     }
-    std::cout<<"After Complete Traversal"<<'\n';
-    rowByRowPrint(dp);
     return dp[rows-1][cols-1];
     
 }
