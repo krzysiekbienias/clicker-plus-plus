@@ -8,6 +8,13 @@ TEST(CollidingAsteroidsTest, EmptyInput) {
     EXPECT_EQ(collidingAsteroids(input), expected);
 }
 
+//from platform
+TEST(CollidingAsteroidsTest, LeetCode) {
+    std::vector<int> input{-3,5,-8,6,7,-4,-7};
+    std::vector<int> expected{-3,-8,6};
+    EXPECT_EQ(collidingAsteroids(input), expected);
+}
+
 // No collision: all moving right
 TEST(CollidingAsteroidsTest, AllRightNoCollision) {
     std::vector<int> input{1, 2, 3};

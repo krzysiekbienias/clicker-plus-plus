@@ -8,6 +8,7 @@ std::vector<int> collidingAsteroids(const std::vector<int>& asteroids){
     for (int asteroid:asteroids){
         // stack.back()>0 (->), asteroid <0 (<-)
         while(alive && !stack.empty()  && stack.back()>0 && asteroid<0 ) {
+            // interaction is happening
             if (abs(asteroid)>stack.back()){
                 stack.pop_back(); //keep fighting
                 
