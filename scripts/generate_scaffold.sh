@@ -35,7 +35,7 @@ create_if_missing() {
 }
 
 create_if_missing "$CPP_FILE" \
-$'#include <std_aliases.hpp>\n\nusing namespace stl;\nusing namespace io;\nusing namespace str;\n\n// Implement your logic here.\n'
+$'#include "'"${FOLDER}/${NAME}.hpp"$'"\n#include <vector>\n#include <string>\n\nusing std::vector;\nusing std::string;\n\n// Implement your logic here.\n'
 
 create_if_missing "$HEADER_FILE" \
 $'#pragma once\n\n#include <string>\n#include <vector>\n\n'
