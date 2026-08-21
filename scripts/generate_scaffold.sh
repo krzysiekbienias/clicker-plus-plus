@@ -1,10 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ "$#" -ne 2 ]; then
+usage() {
   echo "❌ Usage: ./generate_scaffold.sh <folder> <name>"
+  echo "          ./generate_scaffold.sh --rm <folder> <name>"
   echo "   Example: ./generate_scaffold.sh greedy assign_mice_to_holes"
+  echo "            ./generate_scaffold.sh --rm greedy assign_mice_to_holes"
   exit 1
+}
+
+REMOVE=0
+if [[ "${1:-}" == "--rm" || "${1:-}" == "-d" ]]; then
+  REMOVE=1
+  shift
+fi
+
+if [ "$#" -ne 2 ]; then
+  usage
 fi
 
 FOLDER="$1"
@@ -22,6 +34,23 @@ NAME="$2"
 CPP_FILE="src/${FOLDER}/${NAME}.cpp"
 HEADER_FILE="header/${FOLDER}/${NAME}.hpp"
 TEST_FILE="unit_tests/${FOLDER}/test_${NAME}.cpp"
+
+remove_if_exists() {
+  local path="$1"
+  if [[ -e "$path" ]]; then
+    rm -f "$path"
+    echo "🗑️  REMOVED: $path"
+  else
+    echo "⚠️  SKIP (missing): $path"
+  fi
+}
+
+if [[ "$REMOVE" -eq 1 ]]; then
+  remove_if_exists "$CPP_FILE"
+  remove_if_exists "$HEADER_FILE"
+  remove_if_exists "$TEST_FILE"
+  exit 0
+fi
 
 create_if_missing() {
   local path="$1"
