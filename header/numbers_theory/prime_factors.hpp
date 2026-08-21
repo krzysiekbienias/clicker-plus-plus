@@ -1,6 +1,8 @@
 # pragma once
-#include <std_aliases.hpp>
+#include <vector>
+#include <unordered_map>
 using namespace stl;
 
 vector<int> primeFactors(int n);
+unordered_map<int,int> primeFactorsMap(int n);
 
