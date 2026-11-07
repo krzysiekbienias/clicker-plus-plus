@@ -7,7 +7,7 @@ using std::string;
 
 int countNegatives(vector<vector<int>> &grid) {
     int res = 0;
-    for (auto v : grid) {
+    for (const auto& v : grid) {
       auto it = upper_bound(v.begin(), v.end(), 0, std::greater<int>());
       res += v.end() - it;
     }
