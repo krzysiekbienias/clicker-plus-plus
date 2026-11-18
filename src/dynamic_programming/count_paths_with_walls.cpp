@@ -1,11 +1,12 @@
-#include "dynamic_programming/paths_in_matrix.hpp"
+#include "dynamic_programming/count_paths_with_walls.hpp"
 #include <vector>
-#include <iostream>
-#include "matrix/row_by_row.hpp"
+#include <string>
 
-// Implement your paths_in_matrix logic here.
+using std::vector;
+using std::string;
 
-int pathsInMatrix(const std::vector<std::vector<int>>& grid){
+// Implement your logic here.
+int pathsInMatrixWithWalls(const std::vector<std::vector<int>>& grid){
     int rows =grid.size();
     int cols=grid[0].size();
     std::vector<std::vector<int>> dp(rows,std::vector<int>(cols,0));
@@ -44,4 +45,3 @@ int pathsInMatrix(const std::vector<std::vector<int>>& grid){
     return dp[rows-1][cols-1];
     
 }
-
